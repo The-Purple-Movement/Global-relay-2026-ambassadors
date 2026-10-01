@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Copy, Award } from 'lucide-react';
 
 export const AmbassadorTasks: React.FC = () => {
-  const [referralCode] = useState("COMPASSION-2026-RELAY");
+  const [referralCode] = useState("[YOUR_REFERRAL_ID]");
   const [copiedCode, setCopiedCode] = useState(false);
 
   const handleCopyReferral = () => {
@@ -84,9 +84,6 @@ export const AmbassadorTasks: React.FC = () => {
                     <p className="text-xs sm:text-sm text-bluegrey-brand mt-1">
                       Download the certified badge from the kit and update your headline and featured section.
                     </p>
-                    <a href="#section-kit" className="inline-block mt-2 text-xs font-semibold text-slate-brand hover:text-dark-brand underline">
-                      Access Ambassador Kit &rarr;
-                    </a>
                   </div>
                 </div>
 
@@ -100,9 +97,6 @@ export const AmbassadorTasks: React.FC = () => {
                     <p className="text-xs sm:text-sm text-bluegrey-brand mt-1">
                       Apply the Futokoro frame to your profile picture to signal your regional representation.
                     </p>
-                    <a href="#section-kit" className="inline-block mt-2 text-xs font-semibold text-slate-brand hover:text-dark-brand underline">
-                      Access Ambassador Kit &rarr;
-                    </a>
                   </div>
                 </div>
 
@@ -128,7 +122,6 @@ export const AmbassadorTasks: React.FC = () => {
                     <label className="block text-xs font-semibold tracking-wider uppercase text-slate-brand mb-3">
                       SELECT YOUR PREFERRED TIME
                     </label>
-
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <label
                         className={\`flex items-center gap-3 p-3.5 rounded-xl border cursor-pointer transition-all duration-200 \${
@@ -150,7 +143,6 @@ export const AmbassadorTasks: React.FC = () => {
                           <div className="text-[11px] text-bluegrey-brand font-normal">Asia / Oceania / Africa Window</div>
                         </div>
                       </label>
-
                       <label
                         className={\`flex items-center gap-3 p-3.5 rounded-xl border cursor-pointer transition-all duration-200 \${
                           selectedCallTime === "18:00 UTC"
@@ -172,7 +164,6 @@ export const AmbassadorTasks: React.FC = () => {
                         </div>
                       </label>
                     </div>
-
                     <div className="mt-4 flex flex-wrap items-center gap-3">
                       <button
                         type="submit"
@@ -180,7 +171,6 @@ export const AmbassadorTasks: React.FC = () => {
                       >
                         CONFIRM SLOT
                       </button>
-
                       <button
                         type="button"
                         onClick={handleDownloadIcs}
@@ -189,7 +179,6 @@ export const AmbassadorTasks: React.FC = () => {
                         <Calendar className="w-3.5 h-3.5" />
                         <span>Add to Calendar (.ics)</span>
                       </button>
-
                       {isTimeSaved && (
                         <span className="inline-flex items-center gap-1 text-xs text-slate-brand font-medium">
                           <CheckCircle2 className="w-4 h-4 text-taupe-brand" />
@@ -240,9 +229,6 @@ export const AmbassadorTasks: React.FC = () => {
                       <p className="text-xs sm:text-sm text-bluegrey-brand mt-1">
                         Encourage your local community, colleagues, and university peers to join the live stream. Share the link along with your Referral ID: <strong className="text-dark-brand">{referralCode}</strong>
                       </p>
-                      <a href="#section-kit" className="inline-block mt-2 text-xs font-semibold text-slate-brand hover:text-dark-brand underline">
-                        Access Ambassador Kit &rarr;
-                      </a>
 
                       {/* Referral widget */}
                       <div className="mt-4 p-3 rounded-xl bg-mist-brand/50 border border-bluegrey-brand/20 flex items-center justify-between gap-3">
@@ -271,9 +257,6 @@ export const AmbassadorTasks: React.FC = () => {
                     <p className="text-xs sm:text-sm text-bluegrey-brand mt-1">
                       Highlight the relay schedule, your regional segment, or what compassion in AI means in your local context.
                     </p>
-                    <a href="#section-kit" className="inline-block mt-2 text-xs font-semibold text-slate-brand hover:text-dark-brand underline">
-                      Access Ambassador Kit &rarr;
-                    </a>
                   </div>
                 </div>
 
@@ -287,9 +270,6 @@ export const AmbassadorTasks: React.FC = () => {
                     <p className="text-xs sm:text-sm text-bluegrey-brand mt-1 leading-relaxed">
                       Held after your region's relay segment, Demo Day is a chance to network with fellow ambassadors and gain visibility.
                     </p>
-                    <a href="#section-kit" className="inline-block mt-2 text-xs font-semibold text-slate-brand hover:text-dark-brand underline">
-                      Access Ambassador Kit &rarr;
-                    </a>
                   </div>
                 </div>
 

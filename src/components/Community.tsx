@@ -51,6 +51,7 @@ export const Community: React.FC = () => {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-8 sm:mt-12"
         >
           <a
             href="https://chat.whatsapp.com/JEjPQD4vKjnBdfaODrlgOS?s=cl&p=i&mlu=4&ilr=4"

@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Check, Copy } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 export const AmbassadorKit: React.FC = () => {
-  const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
-
   const kitItems = [
     {
       number: "01",
@@ -27,12 +25,6 @@ export const AmbassadorKit: React.FC = () => {
       tag: "PDF Guide",
     },
   ];
-
-  const handleCopyTag = (idx: number, text: string) => {
-    navigator.clipboard.writeText(text);
-    setCopiedIndex(idx);
-    setTimeout(() => setCopiedIndex(null), 2000);
-  };
 
   return (
     <section 
@@ -66,13 +58,16 @@ export const AmbassadorKit: React.FC = () => {
         {/* Minimalist Typographic List */}
         <div className="divide-y divide-bluegrey-brand/20 border-t border-b border-bluegrey-brand/20">
           {kitItems.map((item, idx) => (
-            <motion.div
+            <motion.a
+              href="https://drive.google.com/drive/folders/1qN82NAxYtPH0VkSPf9eSMdWQzikBxu4-?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
               key={item.number}
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.7, delay: idx * 0.08, ease: [0.22, 1, 0.36, 1] }}
-              className="group py-6 sm:py-7 transition-all duration-300 hover:px-2 cursor-default flex items-center justify-between gap-4"
+              className="group py-6 sm:py-7 transition-all duration-300 hover:px-2 cursor-pointer flex items-center justify-between gap-4 hover:bg-white-brand/40"
             >
               {/* Number & Title */}
               <div className="flex items-center gap-6 sm:gap-10">
@@ -86,23 +81,11 @@ export const AmbassadorKit: React.FC = () => {
 
               {/* Tag & Action */}
               <div className="flex items-center gap-3 shrink-0">
-                <span className="text-[10px] sm:text-[11px] font-mono tracking-wider uppercase text-bluegrey-brand px-2.5 py-1 bg-white-brand/70 rounded border border-bluegrey-brand/15">
+                <span className="text-[10px] sm:text-[11px] font-mono tracking-wider uppercase text-bluegrey-brand px-2.5 py-1 bg-white-brand/70 rounded border border-bluegrey-brand/15 group-hover:border-taupe-brand/30 transition-colors">
                   {item.tag}
                 </span>
-                
-                <button
-                  onClick={() => handleCopyTag(idx, item.title)}
-                  className="p-1 rounded text-bluegrey-brand hover:text-slate-brand transition-colors"
-                  title="Copy details"
-                >
-                  {copiedIndex === idx ? (
-                    <Check className="w-4 h-4 text-slate-brand" />
-                  ) : (
-                    <Copy className="w-4 h-4 opacity-50 hover:opacity-100" />
-                  )}
-                </button>
               </div>
-            </motion.div>
+            </motion.a>
           ))}
         </div>
 

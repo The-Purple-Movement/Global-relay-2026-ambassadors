@@ -106,7 +106,7 @@ export const AmbassadorRole: React.FC = () => {
               className="relative aspect-[4/3] lg:aspect-[5/4] w-full rounded-[20px] sm:rounded-[24px] overflow-hidden shadow-lg border border-bluegrey-brand/20 bg-dark-brand"
             >
               <img
-                src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=800&q=80"
+                src="/images/youth.jpg"
                 alt="Ambassador carrying the compassion relay into their community"
                 className="w-full h-full object-cover transition-transform duration-1000 ease-out hover:scale-[1.03]"
                 loading="lazy"
