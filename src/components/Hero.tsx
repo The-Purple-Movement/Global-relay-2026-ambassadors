@@ -29,7 +29,6 @@ export const Hero: React.FC<HeroProps> = ({ onJoinClick, onLearnMoreClick }) => 
         />
         {/* Subtle left gradient overlay for immaculate typography contrast without obscuring earth */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#D0D8D0]/95 via-[#D0D8D0]/70 to-transparent md:w-[68%] pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#D0D8D0] via-transparent to-transparent h-24 bottom-0 pointer-events-none" />
       </div>
 
       <div className="max-w-7xl mx-auto w-full relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
@@ -37,18 +36,6 @@ export const Hero: React.FC<HeroProps> = ({ onJoinClick, onLearnMoreClick }) => 
         {/* Left Content Column */}
         <div className="lg:col-span-7 xl:col-span-6 flex flex-col justify-center">
           
-          {/* Eyebrow Tag */}
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="mb-5 sm:mb-6"
-          >
-            <span className="text-xs sm:text-sm font-semibold tracking-[0.24em] uppercase text-bluegrey-brand">
-              PEOPLE · ACTION · GLOBAL IMPACT
-            </span>
-          </motion.div>
-
           {/* Large Hero Headline */}
           <motion.h1
             initial={{ opacity: 0, y: 18 }}
@@ -56,11 +43,20 @@ export const Hero: React.FC<HeroProps> = ({ onJoinClick, onLearnMoreClick }) => 
             transition={{ duration: 0.9, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="text-5xl sm:text-7xl md:text-8xl font-medium tracking-tight text-dark-brand leading-[1.02]"
           >
-            Be an
+            AI + Compassion
             <span className="block font-normal text-slate-brand mt-1 sm:mt-2">
-              Ambassador
+              Global Forum 2026
             </span>
           </motion.h1>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            className="mt-4 text-2xl sm:text-3xl font-medium tracking-wide text-dark-brand"
+          >
+            October 2–3
+          </motion.h2>
 
           {/* Subheadline & Description */}
           <motion.p
@@ -69,7 +65,7 @@ export const Hero: React.FC<HeroProps> = ({ onJoinClick, onLearnMoreClick }) => 
             transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="mt-6 text-base sm:text-lg text-dark-brand/85 font-normal leading-relaxed max-w-xl"
           >
-            Bring AI and Compassion to your community. Connect people, spark conversations, and be part of a global movement for a more compassionate, planet-centered future.
+            Welcome to the first global cohort of AI+Compassion Global Forum ambassadors. The Forum unites innovators, policymakers, and cultural leaders to explore how artificial intelligence can serve humanity and the planet. Together, we’ll launch a global alliance, spark a new narrative, and activate projects that place compassion at the heart of technology.
           </motion.p>
 
           {/* Dual Action Buttons */}
@@ -105,6 +101,18 @@ export const Hero: React.FC<HeroProps> = ({ onJoinClick, onLearnMoreClick }) => 
             transition={{ duration: 1, delay: 0.45 }}
             className="mt-12 sm:mt-16 pt-8 border-t border-dark-brand/10 flex items-center gap-8 sm:gap-12"
           >
+            {/* 24 Hours Live */}
+            <div className="flex flex-col">
+              <span className="text-3xl sm:text-4xl font-light text-dark-brand tracking-tight">
+                24
+              </span>
+              <span className="text-[10px] sm:text-xs font-semibold tracking-[0.2em] uppercase text-bluegrey-brand mt-1">
+                HOURS
+              </span>
+            </div>
+
+            <div className="w-[1px] h-10 bg-dark-brand/15" />
+
             {/* 12 Regions */}
             <div className="flex flex-col">
               <span className="text-3xl sm:text-4xl font-light text-dark-brand tracking-tight">
@@ -117,25 +125,13 @@ export const Hero: React.FC<HeroProps> = ({ onJoinClick, onLearnMoreClick }) => 
 
             <div className="w-[1px] h-10 bg-dark-brand/15" />
 
-            {/* 24 Hours Live */}
+            {/* 1 Global Relay */}
             <div className="flex flex-col">
               <span className="text-3xl sm:text-4xl font-light text-dark-brand tracking-tight">
-                24
+                1
               </span>
               <span className="text-[10px] sm:text-xs font-semibold tracking-[0.2em] uppercase text-bluegrey-brand mt-1">
-                HOURS LIVE
-              </span>
-            </div>
-
-            <div className="w-[1px] h-10 bg-dark-brand/15" />
-
-            {/* Real-World Impact */}
-            <div className="flex flex-col">
-              <span className="text-3xl sm:text-4xl font-light text-dark-brand tracking-tight">
-                ∞
-              </span>
-              <span className="text-[10px] sm:text-xs font-semibold tracking-[0.2em] uppercase text-bluegrey-brand mt-1">
-                REAL-WORLD IMPACT
+                GLOBAL RELAY
               </span>
             </div>
           </motion.div>

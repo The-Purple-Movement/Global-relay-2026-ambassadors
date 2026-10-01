@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
-import { HeroTransition } from './components/HeroTransition';
+// import { HeroTransition } from './components/HeroTransition';
 import { FounderMessage } from './components/FounderMessage';
 import { AmbassadorRole } from './components/AmbassadorRole';
 import { AmbassadorKit } from './components/AmbassadorKit';
@@ -79,7 +79,7 @@ export function App() {
           <Hero onJoinClick={() => setIsJoinModalOpen(true)} />
 
           {/* Crossfade Transition & Extended Welcome */}
-          <HeroTransition />
+          {/* <HeroTransition /> */}
 
           {/* 02 — LISTEN : Founder Message */}
           <FounderMessage onOpenVideoModal={() => setIsVideoModalOpen(true)} />

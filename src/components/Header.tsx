@@ -9,7 +9,7 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({ onJoinClick, currentView, onNavigate }) => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeNav, setActiveNav] = useState<'About' | 'Forum' | 'Ambassador' | 'Get Involved'>('Ambassador');
+  // const [activeNav, setActiveNav] = useState<'About' | 'Forum' | 'Ambassador' | 'Get Involved'>('Ambassador');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,24 +19,24 @@ export const Header: React.FC<HeaderProps> = ({ onJoinClick, currentView, onNavi
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleNavClick = (item: 'About' | 'Forum' | 'Ambassador' | 'Get Involved') => {
-    setActiveNav(item);
-    if (item === 'Ambassador') {
-      if (currentView !== 'home') {
-        onNavigate('home');
-      }
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else if (item === 'About') {
-      const el = document.getElementById('section-founder') || document.getElementById('section-role');
-      el?.scrollIntoView({ behavior: 'smooth' });
-    } else if (item === 'Forum') {
-      const el = document.getElementById('section-role') || document.getElementById('section-community');
-      el?.scrollIntoView({ behavior: 'smooth' });
-    } else if (item === 'Get Involved') {
-      const el = document.getElementById('section-tasks') || document.getElementById('section-kit');
-      el?.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  // const handleNavClick = (item: 'About' | 'Forum' | 'Ambassador' | 'Get Involved') => {
+  //   setActiveNav(item);
+  //   if (item === 'Ambassador') {
+  //     if (currentView !== 'home') {
+  //       onNavigate('home');
+  //     }
+  //     window.scrollTo({ top: 0, behavior: 'smooth' });
+  //   } else if (item === 'About') {
+  //     const el = document.getElementById('section-founder') || document.getElementById('section-role');
+  //     el?.scrollIntoView({ behavior: 'smooth' });
+  //   } else if (item === 'Forum') {
+  //     const el = document.getElementById('section-role') || document.getElementById('section-community');
+  //     el?.scrollIntoView({ behavior: 'smooth' });
+  //   } else if (item === 'Get Involved') {
+  //     const el = document.getElementById('section-tasks') || document.getElementById('section-kit');
+  //     el?.scrollIntoView({ behavior: 'smooth' });
+  //   }
+  // };
 
   return (
     <header
@@ -60,7 +60,7 @@ export const Header: React.FC<HeaderProps> = ({ onJoinClick, currentView, onNavi
           {/* Official Colorful Emblem */}
           <div className="w-8 h-8 rounded-full overflow-hidden shadow-xs shrink-0 transition-transform duration-300 group-hover:scale-105">
             <img
-              src="/ai-compassion-logo.svg"
+              src="/logoai.png"
               alt="AI + Compassion Emblem"
               className="w-full h-full object-cover"
             />
@@ -77,7 +77,7 @@ export const Header: React.FC<HeaderProps> = ({ onJoinClick, currentView, onNavi
         </button>
 
         {/* TOP CENTER: Glassmorphic Capsule Menu (as in reference image) */}
-        <nav className="hidden md:flex items-center bg-white-brand/35 backdrop-blur-md border border-white-brand/60 rounded-full px-2 py-1 shadow-xs">
+        {/* <nav className="hidden md:flex items-center bg-white-brand/35 backdrop-blur-md border border-white-brand/60 rounded-full px-2 py-1 shadow-xs">
           {(['About', 'Forum', 'Ambassador', 'Get Involved'] as const).map((item) => {
             const isActive = activeNav === item;
             return (
@@ -97,7 +97,7 @@ export const Header: React.FC<HeaderProps> = ({ onJoinClick, currentView, onNavi
               </button>
             );
           })}
-        </nav>
+        </nav> */}
 
         {/* TOP RIGHT: Join as Ambassador Pill Button */}
         <div className="flex items-center gap-3">
@@ -121,7 +121,7 @@ export const Header: React.FC<HeaderProps> = ({ onJoinClick, currentView, onNavi
             onClick={onJoinClick}
             className="group inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full text-xs font-semibold tracking-wide text-white-brand bg-slate-brand hover:bg-dark-brand border border-white-brand/20 shadow-md transition-all duration-300 hover:scale-[1.02] focus:outline-none"
           >
-            <span>Join as Ambassador</span>
+            <span>Join The Relay</span>
             <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-powder-brand" />
           </button>
         </div>
