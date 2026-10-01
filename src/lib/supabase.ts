@@ -106,6 +106,15 @@ export async function saveAmbassador(ambassador: Ambassador): Promise<void> {
   }
 }
 
+function isValidAmbassador(a: unknown): a is Ambassador {
+  if (!a || typeof a !== 'object') return false;
+  const amb = a as Ambassador;
+  if (!amb.id || !amb.name) return false;
+  // Exclude automated test artifacts
+  if (typeof amb.id === 'string' && amb.id.startsWith('amb-test-')) return false;
+  return true;
+}
+
 /**
  * Fetches all persisted ambassadors.
  * Checks DB table first, falls back to Supabase storage bucket JSON files,
@@ -115,7 +124,8 @@ export async function fetchAmbassadors(): Promise<Ambassador[]> {
   const localList: Ambassador[] = (() => {
     try {
       const raw = localStorage.getItem(LOCAL_STORAGE_KEY);
-      return raw ? JSON.parse(raw) : [];
+      const parsed = raw ? JSON.parse(raw) : [];
+      return Array.isArray(parsed) ? parsed.filter(isValidAmbassador) : [];
     } catch {
       return [];
     }
@@ -135,17 +145,19 @@ export async function fetchAmbassadors(): Promise<Ambassador[]> {
       .order('created_at', { ascending: false });
 
     if (!dbError && dbData && dbData.length > 0) {
-      remoteList = dbData.map((row: Record<string, unknown>) => ({
-        id: String(row.id),
-        name: String(row.name || ''),
-        regionNumber: String(row.region_number || row.regionNumber || '01'),
-        regionName: String(row.region_name || row.regionName || 'Global'),
-        country: String(row.country || 'Global'),
-        city: String(row.city || ''),
-        role: String(row.role || ''),
-        bio: String(row.bio || ''),
-        imageUrl: String(row.image_url || row.imageUrl || ''),
-      }));
+      remoteList = dbData
+        .map((row: Record<string, unknown>) => ({
+          id: String(row.id),
+          name: String(row.name || ''),
+          regionNumber: String(row.region_number || row.regionNumber || '01'),
+          regionName: String(row.region_name || row.regionName || 'Global'),
+          country: String(row.country || 'Global'),
+          city: String(row.city || ''),
+          role: String(row.role || ''),
+          bio: String(row.bio || ''),
+          imageUrl: String(row.image_url || row.imageUrl || ''),
+        }))
+        .filter(isValidAmbassador);
     }
   } catch {
     // DB query failed or table absent, fallback to storage
@@ -159,7 +171,9 @@ export async function fetchAmbassadors(): Promise<Ambassador[]> {
         .list('cohort-2026/ambassadors', { limit: 200 });
 
       if (!listError && files && files.length > 0) {
-        const jsonFiles = files.filter((f) => f.name.endsWith('.json'));
+        const jsonFiles = files.filter(
+          (f) => f.name.endsWith('.json') && !f.name.startsWith('amb-test-')
+        );
         const parsedItems = await Promise.all(
           jsonFiles.map(async (file) => {
             try {
@@ -174,7 +188,7 @@ export async function fetchAmbassadors(): Promise<Ambassador[]> {
             }
           })
         );
-        remoteList = parsedItems.filter((a): a is Ambassador => Boolean(a && a.id && a.name));
+        remoteList = parsedItems.filter(isValidAmbassador);
       }
     } catch (err) {
       console.warn('Error fetching ambassadors from storage:', err);
@@ -192,9 +206,9 @@ export async function fetchAmbassadors(): Promise<Ambassador[]> {
     }
   }
 
-  const combined = Array.from(map.values());
+  const combined = Array.from(map.values()).filter(isValidAmbassador);
 
-  // Update local cache
+  // Update local cache with sanitized list
   try {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(combined));
   } catch {
