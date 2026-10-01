@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" fill="none">
+  <defs>
+    <!-- Top-Right Yellow-Orange Swirl -->
+    <linearGradient id="swirlYellow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F2994A" />
+      <stop offset="100%" stop-color="#F2C94C" />
+    </linearGradient>
+
+    <!-- Top-Left Pink-Coral Swirl -->
+    <linearGradient id="swirlPink" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EB5757" />
+      <stop offset="50%" stop-color="#F27A8F" />
+      <stop offset="100%" stop-color="#E8769F" />
+    </linearGradient>
+
+    <!-- Bottom-Left Coral-Red Swirl -->
+    <linearGradient id="swirlCoral" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EB5757" />
+      <stop offset="100%" stop-color="#E24F6C" />
+    </linearGradient>
+
+    <!-- Bottom-Right Purple-Violet Swirl -->
+    <linearGradient id="swirlPurple" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8A4E9E" />
+      <stop offset="100%" stop-color="#5E338A" />
+    </linearGradient>
+
+    <!-- Inner Violet Accent -->
+    <linearGradient id="swirlViolet" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7B5BA6" />
+      <stop offset="100%" stop-color="#4F2E78" />
+    </linearGradient>
+  </defs>
+
+  <!-- Outer Ring Elements (Aperture / Futokoro Loop) -->
+  <g>
+    <!-- Top Golden Arc -->
+    <path d="M 250 50 A 200 200 0 0 1 445 200 C 390 140 310 110 210 120 C 170 124 130 140 100 170 A 200 200 0 0 1 250 50 Z" fill="url(#swirlYellow)" />
+
+    <!-- Top Left Pink Petal -->
+    <path d="M 100 170 C 130 140 170 124 210 120 C 270 115 330 135 370 175 C 320 185 240 200 175 220 C 145 230 118 245 95 260 A 200 200 0 0 1 100 170 Z" fill="url(#swirlPink)" />
+
+    <!-- Right Violet / Indigo Arc -->
+    <path d="M 445 200 A 200 200 0 0 1 410 380 C 375 320 330 270 260 255 C 310 220 365 200 445 200 Z" fill="url(#swirlViolet)" />
+
+    <!-- Bottom Left Coral Petal -->
+    <path d="M 95 260 C 120 280 160 300 210 315 C 290 340 360 360 410 380 A 200 200 0 0 1 250 450 C 160 450 110 390 95 260 Z" fill="url(#swirlCoral)" />
+
+    <!-- Bottom Purple Arc -->
+    <path d="M 250 450 A 200 200 0 0 0 410 380 C 350 385 290 370 230 340 C 190 320 150 295 110 265 A 200 200 0 0 0 250 450 Z" fill="url(#swirlPurple)" />
+
+    <!-- Central Inner Clear Hole -->
+    <circle cx="250" cy="250" r="100" fill="#F7F8F6" />
+  </g>
+
+  <!-- Horizontal White Center Banner -->
+  <rect x="15" y="200" width="470" height="95" fill="#F7F8F6" rx="4" />
+
+  <!-- Logo Typography -->
+  <!-- AI+COMPASSION -->
+  <text 
+    x="250" 
+    y="248" 
+    text-anchor="middle" 
+    fill="#101416" 
+    font-family="system-ui, -apple-system, 'Plus Jakarta Sans', sans-serif" 
+    font-size="44" 
+    font-weight="900" 
+    letter-spacing="0.04em"
+  >
+    AI+COMPASSION
+  </text>
+
+  <!-- GLOBAL FORUM -->
+  <text 
+    x="250" 
+    y="280" 
+    text-anchor="middle" 
+    fill="#101416" 
+    font-family="system-ui, -apple-system, 'Plus Jakarta Sans', sans-serif" 
+    font-size="20" 
+    font-weight="700" 
+    letter-spacing="0.18em"
+  >
+    GLOBAL FORUM
+  </text>
+</svg>
