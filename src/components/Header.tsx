@@ -101,6 +101,7 @@ export const Header: React.FC<HeaderProps> = ({ onJoinClick, currentView, onNavi
 
         {/* TOP RIGHT: Join as Ambassador Pill Button */}
         <div className="flex items-center gap-3">
+          {/* 
           {currentView === 'ambassadors' ? (
             <button
               onClick={() => onNavigate('home')}
@@ -120,6 +121,7 @@ export const Header: React.FC<HeaderProps> = ({ onJoinClick, currentView, onNavi
               Cohort Directory
             </button>
           )}
+          */}
 
           <button
             onClick={onJoinClick}
