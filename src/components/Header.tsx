@@ -7,7 +7,7 @@ interface HeaderProps {
   onNavigate: (view: 'home' | 'ambassadors') => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ onJoinClick, currentView, onNavigate }) => {
+export const Header: React.FC<HeaderProps> = ({ onJoinClick, onNavigate }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   // const [activeNav, setActiveNav] = useState<'About' | 'Forum' | 'Ambassador' | 'Get Involved'>('Ambassador');
 
