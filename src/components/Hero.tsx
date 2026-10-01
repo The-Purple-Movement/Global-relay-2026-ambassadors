@@ -25,7 +25,7 @@ export const Hero: React.FC<HeroProps> = ({ onJoinClick, onLearnMoreClick }) => 
         <img
           src="/images/hero-exact-banner.jpg"
           alt="AI + Compassion Global Earth Horizon at Sunrise"
-          className="w-full h-full object-cover object-right"
+          className="w-full h-full object-cover object-[80%_center]"
         />
         {/* Subtle left gradient overlay for immaculate typography contrast without obscuring earth */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#D0D8D0]/95 via-[#D0D8D0]/70 to-transparent md:w-[68%] pointer-events-none" />

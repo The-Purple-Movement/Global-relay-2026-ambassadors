@@ -68,6 +68,8 @@ export function App() {
 
       {/* Global Persistent Header */}
       <Header
+        onJoinClick={() => setIsJoinModalOpen(true)}
+        currentView={currentView}
         onNavigate={handleNavigate}
       />
 
