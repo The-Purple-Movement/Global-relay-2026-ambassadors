@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, CheckCircle2, Loader2, CloudUpload } from 'lucide-react';
 import { RELAY_REGIONS } from '../../data/relayRegions';
 import type { Ambassador } from '../../data/ambassadorsData';
-import { uploadAmbassadorPhoto, isSupabaseConfigured } from '../../lib/supabase';
+import { uploadAmbassadorPhoto, isSupabaseConfigured, saveAmbassador } from '../../lib/supabase';
 
 interface UploadPhotoModalProps {
   isOpen: boolean;
@@ -105,6 +105,13 @@ export const UploadPhotoModal: React.FC<UploadPhotoModalProps> = ({
       bio: formData.bio.trim(),
       imageUrl: finalImageUrl,
     };
+
+    try {
+      await saveAmbassador(newAmbassador);
+    } catch (saveErr) {
+      console.warn('Could not persist ambassador:', saveErr);
+    }
+
     onAddAmbassador(newAmbassador);
     setIsUploading(false);
     setIsSuccess(true);

@@ -17,6 +17,7 @@ import { KitPreviewModal } from './components/Modals/KitPreviewModal';
 import { VideoModal } from './components/Modals/VideoModal';
 import { CustomCursor } from './components/CustomCursor';
 import { INITIAL_AMBASSADORS, type Ambassador } from './data/ambassadorsData';
+import { fetchAmbassadors } from './lib/supabase';
 
 export function App() {
   const [currentView, setCurrentView] = useState<'home' | 'ambassadors'>('home');
@@ -46,6 +47,47 @@ export function App() {
     };
   }, []);
 
+  // Fetch persisted ambassadors from Supabase storage and database
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadPersisted = async () => {
+      try {
+        const persisted = await fetchAmbassadors();
+        if (isMounted && persisted.length > 0) {
+          setAmbassadorsList((prev) => {
+            const map = new Map<string, Ambassador>();
+            for (const item of persisted) {
+              if (item.id) map.set(item.id, item);
+            }
+            for (const item of prev) {
+              if (item.id && !map.has(item.id)) {
+                map.set(item.id, item);
+              }
+            }
+            return Array.from(map.values());
+          });
+        }
+      } catch (err) {
+        console.warn('Could not load persisted ambassadors:', err);
+      }
+    };
+
+    loadPersisted();
+
+    // Auto sync every 20 seconds
+    const interval = setInterval(() => {
+      if (typeof document !== 'undefined' && document.visibilityState === 'visible') {
+        loadPersisted();
+      }
+    }, 20000);
+
+    return () => {
+      isMounted = false;
+      clearInterval(interval);
+    };
+  }, []);
+
   const handleNavigate = (view: 'home' | 'ambassadors') => {
     setCurrentView(view);
     if (view === 'ambassadors') {
@@ -58,7 +100,7 @@ export function App() {
   };
 
   const handleAddAmbassador = (newAmbassador: Ambassador) => {
-    setAmbassadorsList((prev) => [newAmbassador, ...prev]);
+    setAmbassadorsList((prev) => [newAmbassador, ...prev.filter(a => a.id !== newAmbassador.id)]);
   };
 
   return (
