@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, CheckCircle2 } from 'lucide-react';
+import { X, CheckCircle2, Loader2, CloudUpload } from 'lucide-react';
 import { RELAY_REGIONS } from '../../data/relayRegions';
 import type { Ambassador } from '../../data/ambassadorsData';
+import { uploadAmbassadorPhoto, isSupabaseConfigured } from '../../lib/supabase';
 
 interface UploadPhotoModalProps {
   isOpen: boolean;
@@ -26,6 +27,9 @@ export const UploadPhotoModal: React.FC<UploadPhotoModalProps> = ({
   });
 
   const [previewImage, setPreviewImage] = useState('/images/ambassador-2.jpg');
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [isUploading, setIsUploading] = useState(false);
+  const [uploadError, setUploadError] = useState<string | null>(null);
   const [isSuccess, setIsSuccess] = useState(false);
 
   if (!isOpen) return null;
@@ -33,14 +37,38 @@ export const UploadPhotoModal: React.FC<UploadPhotoModalProps> = ({
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
+      setSelectedFile(file);
+      setUploadError(null);
       const url = URL.createObjectURL(file);
       setPreviewImage(url);
       setFormData({ ...formData, imageUrl: url });
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsUploading(true);
+    setUploadError(null);
+
+    let finalImageUrl = previewImage;
+
+    // Upload to Supabase Storage if file is selected and Supabase is configured
+    if (selectedFile) {
+      if (isSupabaseConfigured) {
+        try {
+          finalImageUrl = await uploadAmbassadorPhoto(selectedFile);
+        } catch (err: unknown) {
+          console.error('Supabase storage upload error:', err);
+          const message = err instanceof Error ? err.message : 'Failed to upload photo to Supabase';
+          setUploadError(message);
+          setIsUploading(false);
+          return;
+        }
+      } else {
+        console.warn('Supabase anon key not set in .env. Using local blob URL.');
+      }
+    }
+
     const regionObj = RELAY_REGIONS.find(r => r.regionNumber === formData.regionNumber);
     const newAmbassador: Ambassador = {
       id: `amb-${Date.now()}`,
@@ -51,9 +79,10 @@ export const UploadPhotoModal: React.FC<UploadPhotoModalProps> = ({
       city: formData.city,
       role: formData.role,
       bio: formData.bio,
-      imageUrl: previewImage,
+      imageUrl: finalImageUrl,
     };
     onAddAmbassador(newAmbassador);
+    setIsUploading(false);
     setIsSuccess(true);
   };
 
@@ -209,12 +238,45 @@ export const UploadPhotoModal: React.FC<UploadPhotoModalProps> = ({
                   />
                 </div>
 
-                <button
-                  type="submit"
-                  className="w-full py-3 rounded-xl text-xs font-semibold tracking-wider uppercase text-white-brand bg-slate-brand hover:bg-dark-brand transition-colors"
-                >
-                  PUBLISH TO COHORT WALL
-                </button>
+                {/* Supabase Storage Notice / Error */}
+                {uploadError && (
+                  <div className="p-3 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs leading-relaxed">
+                    <p className="font-semibold">Upload failed</p>
+                    <p className="mt-0.5">{uploadError}</p>
+                    <p className="mt-1 text-[11px] text-red-600">
+                      Ensure your Supabase bucket is created and set to public, or check your API key in .env.
+                    </p>
+                  </div>
+                )}
+
+                <div className="pt-2">
+                  <button
+                    type="submit"
+                    disabled={isUploading}
+                    className="w-full py-3 rounded-xl text-xs font-semibold tracking-wider uppercase text-white-brand bg-slate-brand hover:bg-dark-brand transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  >
+                    {isUploading ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin text-white-brand" />
+                        <span>Uploading...</span>
+                      </>
+                    ) : (
+                      <>
+                        <CloudUpload className="w-4 h-4 text-powder-brand" />
+                        <span>Publish to Cohort Wall</span>
+                      </>
+                    )}
+                  </button>
+
+                  <div className="mt-2.5 flex items-center justify-center gap-1.5 text-[11px] text-bluegrey-brand font-mono">
+                    <span className={`w-1.5 h-1.5 rounded-full ${isSupabaseConfigured ? 'bg-emerald-500' : 'bg-amber-400'}`} />
+                    <span>
+                      {isSupabaseConfigured 
+                        ? 'Supabase Cloud Storage enabled' 
+                        : 'Local mode (add VITE_SUPABASE_ANON_KEY to .env for cloud storage)'}
+                    </span>
+                  </div>
+                </div>
               </form>
             </div>
           ) : (

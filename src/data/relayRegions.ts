@@ -12,98 +12,98 @@ export const RELAY_DATA: RelayData[] = [
     region: 'Kyoto Opening Ceremony',
     segment: 'Opening',
     producer: 'Jun Suto',
-    utc: 'Oct 2 06:00–07:00'
+    utc: 'Oct 2 06:00–07:00 UTC'
   },
   {
     id: 2,
     region: 'Australia, New Zealand & South Pacific',
     segment: 'Oceania',
     producer: 'Christina Gerakiteys',
-    utc: 'Oct 2 07:00–09:00'
+    utc: 'Oct 2 07:00–09:00 UTC'
   },
   {
     id: 3,
     region: 'Japan, Korea, Taiwan & Northeast Asia',
     segment: 'East Asia',
     producer: 'Jun Suto',
-    utc: 'Oct 2 09:00–11:00'
+    utc: 'Oct 2 09:00–11:00 UTC'
   },
   {
     id: 4,
     region: 'Southeast Asia (aka Youth produced segment)',
     segment: 'Youth (South Asia)',
     producer: 'Aditi Singh',
-    utc: 'Oct 2 11:00–13:00'
+    utc: 'Oct 2 11:00–13:00 UTC'
   },
   {
     id: 5,
     region: 'South Asia',
     segment: 'South Asia',
     producer: 'Deepu S Nath',
-    utc: 'Oct 2 13:00–15:00'
+    utc: 'Oct 2 13:00–15:00 UTC'
   },
   {
     id: 6,
     region: 'Middle East, Caucasus & Central Asia',
     segment: 'GCC',
     producer: 'Walied Albasheer',
-    utc: 'Oct 2 15:00–17:00'
+    utc: 'Oct 2 15:00–17:00 UTC'
   },
   {
     id: 7,
     region: 'East Africa, Southern Africa & Central Europe',
     segment: 'Africa',
     producer: 'Lee Kironget, Brainy',
-    utc: 'Oct 2 17:00–19:00'
+    utc: 'Oct 2 17:00–19:00 UTC'
   },
   {
     id: 8,
     region: 'UK, Ireland, Iberia & West Africa',
     segment: 'Europe',
     producer: 'Fabrizio Gramuglio',
-    utc: 'Oct 2 19:00–21:00'
+    utc: 'Oct 2 19:00–21:00 UTC'
   },
   {
     id: 9,
     region: 'Eastern & Southern South America & Caribbean',
     segment: 'Caribian & LATAM',
     producer: 'Julieta Reyes',
-    utc: 'Oct 2 21:00–23:00'
+    utc: 'Oct 2 21:00–23:00 UTC'
   },
   {
     id: 10,
     region: 'Eastern North America & Northern South America',
     segment: 'North America',
     producer: 'Ani Chahal Honan',
-    utc: 'Oct 2 23:00–01:00'
+    utc: 'Oct 2 23:00–01:00 UTC'
   },
   {
     id: 11,
     region: 'Central North America & Mexico',
     segment: 'North America',
     producer: 'Ani Chahal Honan',
-    utc: 'Oct 3 01:00–03:00'
+    utc: 'Oct 3 01:00–03:00 UTC'
   },
   {
     id: 12,
     region: 'North America',
     segment: 'North America',
     producer: 'Ani Chahal Honan',
-    utc: 'Oct 3 03:00–05:00'
+    utc: 'Oct 3 03:00–05:00 UTC'
   },
   {
     id: 13,
     region: 'Hawai\'i, Alaska & Pacific Islands',
     segment: 'Pacific Islands (Ocean)',
     producer: 'Jun Suto',
-    utc: 'Oct 3 05:00–07:00'
+    utc: 'Oct 3 05:00–07:00 UTC'
   },
   {
     id: 14,
     region: 'Kyoto Closing Ceremony',
     segment: 'Closing',
     producer: 'Jun Suto',
-    utc: 'Oct 3 07:00–08:00'
+    utc: 'Oct 3 07:00–08:00 UTC'
   }
 ];
 

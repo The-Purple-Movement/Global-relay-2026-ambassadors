@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { Ambassador } from '../data/ambassadorsData';
-import { RELAY_REGIONS } from '../data/relayRegions';
 import { ArrowLeft, Upload, Plus } from 'lucide-react';
 
 interface AmbassadorWallProps {
@@ -15,11 +14,6 @@ export const AmbassadorWall: React.FC<AmbassadorWallProps> = ({
   onOpenUploadModal,
   ambassadorsList,
 }) => {
-  const [selectedFilter, setSelectedFilter] = useState<string>("All");
-
-  const filteredAmbassadors = selectedFilter === "All"
-    ? ambassadorsList
-    : ambassadorsList.filter(a => a.regionNumber === selectedFilter);
 
   return (
     <div className="min-h-screen bg-mist-brand text-dark-brand pt-28 pb-32 px-6 sm:px-8 lg:px-12">
@@ -69,46 +63,13 @@ export const AmbassadorWall: React.FC<AmbassadorWallProps> = ({
           </div>
         </div>
 
-        {/* Regional Filter Bar */}
-        <div className="mb-12 pb-4 border-b border-bluegrey-brand/20 overflow-x-auto no-scrollbar">
-          <div className="flex items-center gap-2 min-w-max">
-            <button
-              onClick={() => setSelectedFilter("All")}
-              className={`px-4 py-2 rounded-lg text-xs font-medium tracking-wider transition-all duration-200 ${
-                selectedFilter === "All"
-                  ? "bg-slate-brand text-white-brand shadow-xs"
-                  : "bg-white-brand/60 text-dark-brand hover:bg-white-brand border border-bluegrey-brand/15"
-              }`}
-            >
-              All Regions ({ambassadorsList.length})
-            </button>
-
-            {RELAY_REGIONS.map((region) => {
-              const count = ambassadorsList.filter(a => a.regionNumber === region.regionNumber).length;
-              return (
-                <button
-                  key={region.id}
-                  onClick={() => setSelectedFilter(region.regionNumber)}
-                  className={`px-3.5 py-2 rounded-lg text-xs font-mono transition-all duration-200 ${
-                    selectedFilter === region.regionNumber
-                      ? "bg-slate-brand text-white-brand shadow-xs"
-                      : "bg-white-brand/60 text-bluegrey-brand hover:bg-white-brand border border-bluegrey-brand/15"
-                  }`}
-                >
-                  R{region.regionNumber} {count > 0 ? `(${count})` : ''}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
         {/* Editorial Photo Grid */}
         <motion.div 
           layout
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8"
         >
           <AnimatePresence>
-            {filteredAmbassadors.map((ambassador) => (
+            {ambassadorsList.map((ambassador) => (
               <motion.div
                 key={ambassador.id}
                 layout

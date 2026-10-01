@@ -12,6 +12,7 @@ export interface Ambassador {
 }
 
 export const INITIAL_AMBASSADORS: Ambassador[] = [
+  /*
   {
     id: "amb-1",
     name: "Dr. Amani Mwangi",
@@ -103,4 +104,5 @@ export const INITIAL_AMBASSADORS: Ambassador[] = [
     bio: "Focusing on algorithmic alignment architectures that reflect universal compassion and cross-cultural values.",
     imageUrl: "/images/ambassador-role.jpg",
   },
+  */
 ];

@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 
 export const AmbassadorKit: React.FC = () => {
+  /*
   const kitItems = [
     {
       number: "01",
@@ -25,6 +26,7 @@ export const AmbassadorKit: React.FC = () => {
       tag: "PDF Guide",
     },
   ];
+  */
 
   return (
     <section 
@@ -33,7 +35,7 @@ export const AmbassadorKit: React.FC = () => {
     >
       <div className="max-w-5xl mx-auto">
         {/* Section Header */}
-        <div className="max-w-2xl mb-12 sm:mb-16">
+        <div className="max-w-2xl mb-10 sm:mb-12">
           <motion.h2
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -55,7 +57,8 @@ export const AmbassadorKit: React.FC = () => {
           </motion.p>
         </div>
 
-        {/* Minimalist Typographic List */}
+        {/* Minimalist Typographic List - Commented out */}
+        {/*
         <div className="divide-y divide-bluegrey-brand/20 border-t border-b border-bluegrey-brand/20">
           {kitItems.map((item, idx) => (
             <motion.a
@@ -69,7 +72,6 @@ export const AmbassadorKit: React.FC = () => {
               transition={{ duration: 0.7, delay: idx * 0.08, ease: [0.22, 1, 0.36, 1] }}
               className="group py-6 sm:py-7 transition-all duration-300 hover:px-2 cursor-pointer flex items-center justify-between gap-4 hover:bg-white-brand/40"
             >
-              {/* Number & Title */}
               <div className="flex items-center gap-6 sm:gap-10">
                 <span className="text-lg sm:text-xl font-mono text-bluegrey-brand transition-colors duration-300 group-hover:text-taupe-brand">
                   {item.number}
@@ -79,7 +81,6 @@ export const AmbassadorKit: React.FC = () => {
                 </h3>
               </div>
 
-              {/* Tag & Action */}
               <div className="flex items-center gap-3 shrink-0">
                 <span className="text-[10px] sm:text-[11px] font-mono tracking-wider uppercase text-bluegrey-brand px-2.5 py-1 bg-white-brand/70 rounded border border-bluegrey-brand/15 group-hover:border-taupe-brand/30 transition-colors">
                   {item.tag}
@@ -88,14 +89,15 @@ export const AmbassadorKit: React.FC = () => {
             </motion.a>
           ))}
         </div>
+        */}
 
-        {/* CTA: [ ACCESS THE FULL KIT → ] */}
+        {/* CTAs: [ ACCESS THE FULL KIT → ] and [ YOUR TWIBBON FRAME → ] */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-40px" }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="mt-10 sm:mt-12 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
+          className="mt-10 sm:mt-12 flex flex-wrap items-center gap-8 sm:gap-12"
         >
           <a
             href="https://drive.google.com/drive/folders/1qN82NAxYtPH0VkSPf9eSMdWQzikBxu4-?usp=sharing"
@@ -111,9 +113,18 @@ export const AmbassadorKit: React.FC = () => {
             </div>
           </a>
 
-          <span className="text-xs text-bluegrey-brand font-mono">
-            Google Drive Repository · Cohort 2026
-          </span>
+          <a
+            href="#"
+            onClick={(e) => e.preventDefault()}
+            className="group inline-flex items-center gap-3 text-xs sm:text-sm font-semibold tracking-wider uppercase text-dark-brand hover:text-slate-brand transition-all duration-300"
+          >
+            <span className="border-b border-dark-brand group-hover:border-slate-brand pb-0.5">
+              YOUR TWIBBON FRAME
+            </span>
+            <div className="w-7 h-7 rounded-full bg-slate-brand text-white-brand flex items-center justify-center transition-transform duration-300 group-hover:translate-x-1 group-hover:bg-dark-brand">
+              <ArrowRight className="w-3.5 h-3.5" />
+            </div>
+          </a>
         </motion.div>
       </div>
     </section>

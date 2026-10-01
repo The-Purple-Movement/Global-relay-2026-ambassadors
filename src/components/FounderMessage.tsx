@@ -49,10 +49,10 @@ export const FounderMessage: React.FC<FounderMessageProps> = () => {
         >
           {!isPlaying ? (
             <>
-              {/* High-res YouTube Thumbnail */}
+              {/* High-res Video Frame Thumbnail (2:04) */}
               <img
-                src="https://img.youtube.com/vi/t6MaA4dvs6U/maxresdefault.jpg"
-                alt="Welcome Message"
+                src="/images/founder-video-thumbnail.jpg"
+                alt="Jun Suto - AI + Compassion Welcome Message"
                 className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
                 loading="lazy"
               />

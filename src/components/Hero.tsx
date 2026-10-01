@@ -1,13 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUpRight, Play } from 'lucide-react';
+import { /* ArrowUpRight, */ Play } from 'lucide-react';
 
 interface HeroProps {
   onJoinClick?: () => void;
   onLearnMoreClick?: () => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onJoinClick, onLearnMoreClick }) => {
+export const Hero: React.FC<HeroProps> = ({ onJoinClick: _onJoinClick, onLearnMoreClick }) => {
   const scrollToAbout = () => {
     if (onLearnMoreClick) {
       onLearnMoreClick();
@@ -100,7 +100,8 @@ export const Hero: React.FC<HeroProps> = ({ onJoinClick, onLearnMoreClick }) => 
             transition={{ duration: 0.9, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="mt-8 sm:mt-10 lg:mt-8 flex flex-wrap items-center gap-4"
           >
-            {/* Primary Pill Button */}
+            {/* Primary Pill Button - Commented out */}
+            {/*
             <button
               onClick={onJoinClick}
               className="group inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold tracking-wide text-white-brand bg-slate-brand hover:bg-dark-brand shadow-lg border border-slate-brand/40 transition-all duration-300 hover:scale-[1.02] focus:outline-none"
@@ -108,6 +109,7 @@ export const Hero: React.FC<HeroProps> = ({ onJoinClick, onLearnMoreClick }) => 
               <span>Join as Ambassador</span>
               <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-powder-brand" />
             </button>
+            */}
 
             {/* Frosted Glass Secondary Button */}
             <button

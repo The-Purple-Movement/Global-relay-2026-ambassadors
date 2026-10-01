@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { Copy, Award } from 'lucide-react';
 
 export const AmbassadorTasks: React.FC = () => {
-  const [referralCode] = useState("[YOUR_REFERRAL_ID]");
   const [copiedCode, setCopiedCode] = useState(false);
 
   const handleCopyReferral = () => {
@@ -226,9 +225,6 @@ export const AmbassadorTasks: React.FC = () => {
                       <h4 className="text-base font-semibold text-dark-brand">
                         Bring 10 people to register using your referral code
                       </h4>
-                      <p className="text-xs sm:text-sm text-bluegrey-brand mt-1">
-                        Encourage your local community, colleagues, and university peers to join the live stream. Share the link along with your Referral ID: <strong className="text-dark-brand">{referralCode}</strong>
-                      </p>
 
                       {/* Referral widget */}
                       <div className="mt-4 p-3 rounded-xl bg-mist-brand/50 border border-bluegrey-brand/20 flex items-center justify-between gap-3">
