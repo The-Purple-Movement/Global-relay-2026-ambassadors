@@ -11,10 +11,35 @@ export const Hero: React.FC<HeroProps> = ({ onJoinClick, onLearnMoreClick }) => 
   const scrollToAbout = () => {
     if (onLearnMoreClick) {
       onLearnMoreClick();
-    } else {
-      const el = document.getElementById('section-founder');
-      el?.scrollIntoView({ behavior: 'smooth' });
+      return;
     }
+
+    const target = document.getElementById('section-founder') || document.getElementById('section-relay');
+    if (!target) return;
+
+    // Compensate for fixed header height
+    const headerOffset = 76;
+    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+    const startPosition = window.pageYOffset;
+    const distance = targetPosition - startPosition;
+    const duration = 750;
+    let start: number | null = null;
+
+    // Cubic ease in-out curve for luxurious motion
+    const easeInOutCubic = (t: number) =>
+      t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+
+    const step = (timestamp: number) => {
+      if (!start) start = timestamp;
+      const progress = Math.min((timestamp - start) / duration, 1);
+      const ease = easeInOutCubic(progress);
+      window.scrollTo(0, startPosition + distance * ease);
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      }
+    };
+
+    window.requestAnimationFrame(step);
   };
 
   return (

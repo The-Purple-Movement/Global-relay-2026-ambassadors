@@ -12,7 +12,7 @@ export const FounderMessage: React.FC<FounderMessageProps> = () => {
   return (
     <section 
       id="section-founder" 
-      className="relative bg-mist-brand text-dark-brand py-24 sm:py-32 px-6 sm:px-8 lg:px-12 overflow-hidden"
+      className="relative bg-mist-brand text-dark-brand py-24 sm:py-32 px-6 sm:px-8 lg:px-12 overflow-hidden scroll-mt-20 sm:scroll-mt-24"
     >
       <div className="max-w-5xl mx-auto">
         {/* Section Header */}
