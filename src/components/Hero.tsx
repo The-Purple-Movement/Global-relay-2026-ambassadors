@@ -18,7 +18,7 @@ export const Hero: React.FC<HeroProps> = ({ onJoinClick, onLearnMoreClick }) => 
   };
 
   return (
-    <section className="relative min-h-[100svh] lg:h-[100svh] bg-[#D0D8D0] text-dark-brand flex items-center pt-24 sm:pt-28 lg:pt-20 pb-16 lg:pb-12 overflow-hidden select-none">
+    <section className="relative min-h-[100svh] lg:h-[100svh] bg-[#D0D8D0] text-dark-brand flex items-center pt-32 sm:pt-36 lg:pt-32 pb-16 lg:pb-12 overflow-hidden select-none">
       
       {/* Background Image: Exact User Reference Image */}
       <div className="absolute inset-0 z-0">
@@ -41,7 +41,7 @@ export const Hero: React.FC<HeroProps> = ({ onJoinClick, onLearnMoreClick }) => 
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="text-5xl sm:text-6xl md:text-[4.25rem] lg:text-[4.5rem] font-medium tracking-tight text-dark-brand leading-[1.02]"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-[4rem] font-medium tracking-tight text-dark-brand leading-[1.02]"
           >
             AI + Compassion
             <span className="block font-normal text-slate-brand mt-1 sm:mt-2">
