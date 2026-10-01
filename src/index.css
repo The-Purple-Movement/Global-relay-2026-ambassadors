@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-slate: #385868;
+    --color-bluegrey: #687F8F;
+    --color-powder: #98B0C0;
+    --color-taupe: #B0A08C;
+    --color-mist: #D0D8D0;
+    --color-dark: #17252C;
+    --color-white: #F7F8F6;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: #D0D8D0;
+    color: #17252C;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  /* Custom subtle scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #D0D8D0;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #687F8F;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #385868;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .editorial-title {
+    letter-spacing: -0.035em;
+    line-height: 1.05;
+  }
+
+  .editorial-sub {
+    letter-spacing: -0.015em;
+    line-height: 1.5;
+  }
+
+  .editorial-eyebrow {
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    font-weight: 500;
+  }
+
+  .clip-reveal {
+    clip-path: inset(0 0 0 0 round 24px);
+    transition: clip-path 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
