@@ -114,7 +114,7 @@ export const AmbassadorKit: React.FC = () => {
           </a>
 
           <a
-            href="https://canva.link/f2qij1wkr263vg2"
+            href="https://canva.link/tefggbtqpexyhqj"
             target="_blank"
             rel="noopener noreferrer"
             className="group inline-flex items-center gap-3 text-xs sm:text-sm font-semibold tracking-wider uppercase text-dark-brand hover:text-slate-brand transition-all duration-300"

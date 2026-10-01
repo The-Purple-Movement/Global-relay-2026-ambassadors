@@ -111,12 +111,6 @@ export const AmbassadorRole: React.FC = () => {
                 className="w-full h-full object-cover transition-transform duration-1000 ease-out hover:scale-[1.03]"
                 loading="lazy"
               />
-              
-              {/* Subtle caption tag */}
-              <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 bg-white-brand/90 backdrop-blur-md px-4 py-2.5 rounded-xl border border-white-brand text-dark-brand flex items-center justify-between text-xs">
-                <span className="font-medium tracking-wide">Regional Leadership · Cohort 2026</span>
-                <span className="text-taupe-brand font-mono">#01–#12</span>
-              </div>
             </motion.div>
           </div>
 

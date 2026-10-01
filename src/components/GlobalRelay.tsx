@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { RELAY_DATA } from '../data/relayRegions';
-import { MapPin, Clock, User, ArrowRight } from 'lucide-react';
+import { MapPin, Clock, User /*, ArrowRight */ } from 'lucide-react';
 
 export const GlobalRelay: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -129,6 +129,7 @@ export const GlobalRelay: React.FC = () => {
                   </div>
                 </div>
 
+                {/*
                 <div className="pt-4 border-t border-bluegrey-brand/10">
                   <div className="text-[10px] font-bold tracking-widest text-bluegrey-brand uppercase mb-3">
                     Relay Status
@@ -143,6 +144,7 @@ export const GlobalRelay: React.FC = () => {
                   Represent {activeSegment.segment}
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </button>
+                */}
               </div>
             </motion.div>
           </AnimatePresence>
