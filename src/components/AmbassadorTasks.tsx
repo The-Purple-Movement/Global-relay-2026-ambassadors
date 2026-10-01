@@ -1,47 +1,15 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Calendar, CheckCircle2, Copy, Award } from 'lucide-react';
+import { Copy, Award } from 'lucide-react';
 
 export const AmbassadorTasks: React.FC = () => {
-  const [selectedCallTime, setSelectedCallTime] = useState<string>("06:00–07:00 UTC");
-  const [isTimeSaved, setIsTimeSaved] = useState(false);
   const [referralCode] = useState("COMPASSION-2026-RELAY");
   const [copiedCode, setCopiedCode] = useState(false);
 
-  const handleSaveTime = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsTimeSaved(true);
-    setTimeout(() => setIsTimeSaved(false), 3000);
-  };
-
   const handleCopyReferral = () => {
-    navigator.clipboard.writeText(`https://compassionai.io/join?ref=${referralCode}`);
+    navigator.clipboard.writeText(`https://makemypass.com/event/ai-compassion-participants`);
     setCopiedCode(true);
     setTimeout(() => setCopiedCode(false), 2000);
-  };
-
-  const handleDownloadIcs = () => {
-    const isMorning = selectedCallTime.includes("06:00");
-    const icsContent = `BEGIN:VCALENDAR
-VERSION:2.0
-PRODID:-//AI and Compassion//Global Forum 2026//EN
-BEGIN:VEVENT
-SUMMARY:AI + Compassion Global Forum, Ambassador Onboarding Call
-DESCRIPTION:Official global ambassador cohort onboarding session before the October 2-3 Relay.
-DTSTART:${isMorning ? '20261001T060000Z' : '20261001T180000Z'}
-DTEND:${isMorning ? '20261001T070000Z' : '20261001T190000Z'}
-LOCATION:Live Broadcast Link (Shared via Ambassador Portal)
-STATUS:CONFIRMED
-END:VEVENT
-END:VCALENDAR`;
-
-    const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
-    const link = document.createElement('a');
-    link.href = window.URL.createObjectURL(blob);
-    link.setAttribute('download', `AI-Compassion-Onboarding-${isMorning ? '0600UTC' : '1800UTC'}.ics`);
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
   };
 
   return (
@@ -116,6 +84,9 @@ END:VCALENDAR`;
                     <p className="text-xs sm:text-sm text-bluegrey-brand mt-1">
                       Download the certified badge from the kit and update your headline and featured section.
                     </p>
+                    <a href="#section-kit" className="inline-block mt-2 text-xs font-semibold text-slate-brand hover:text-dark-brand underline">
+                      Access Ambassador Kit &rarr;
+                    </a>
                   </div>
                 </div>
 
@@ -129,10 +100,14 @@ END:VCALENDAR`;
                     <p className="text-xs sm:text-sm text-bluegrey-brand mt-1">
                       Apply the Futokoro frame to your profile picture to signal your regional representation.
                     </p>
+                    <a href="#section-kit" className="inline-block mt-2 text-xs font-semibold text-slate-brand hover:text-dark-brand underline">
+                      Access Ambassador Kit &rarr;
+                    </a>
                   </div>
                 </div>
 
                 {/* Task 03 + Preferred Time Form */}
+                {/* 
                 <div className="p-6 rounded-2xl bg-white-brand border border-slate-brand/30 shadow-md">
                   <div className="flex items-start gap-4 mb-4">
                     <span className="text-sm font-mono text-slate-brand font-bold mt-0.5">03</span>
@@ -143,10 +118,12 @@ END:VCALENDAR`;
                       <p className="text-xs sm:text-sm text-bluegrey-brand mt-0.5">
                         October 1, 2026 · Global live cohort session with Jun Suto and regional mentors
                       </p>
+                      <a href="#section-kit" className="inline-block mt-2 text-xs font-semibold text-slate-brand hover:text-dark-brand underline">
+                        Access Ambassador Kit &rarr;
+                      </a>
                     </div>
                   </div>
 
-                  {/* Embedded Form for Time Selection */}
                   <form onSubmit={handleSaveTime} className="mt-4 pt-4 border-t border-bluegrey-brand/15">
                     <label className="block text-xs font-semibold tracking-wider uppercase text-slate-brand mb-3">
                       SELECT YOUR PREFERRED TIME
@@ -154,11 +131,11 @@ END:VCALENDAR`;
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <label
-                        className={`flex items-center gap-3 p-3.5 rounded-xl border cursor-pointer transition-all duration-200 ${
+                        className={\`flex items-center gap-3 p-3.5 rounded-xl border cursor-pointer transition-all duration-200 \${
                           selectedCallTime === "06:00–07:00 UTC"
                             ? "bg-slate-brand/5 border-slate-brand text-slate-brand font-semibold shadow-xs"
                             : "bg-mist-brand/40 border-bluegrey-brand/20 text-dark-brand hover:border-bluegrey-brand/40"
-                        }`}
+                        }\`}
                       >
                         <input
                           type="radio"
@@ -175,11 +152,11 @@ END:VCALENDAR`;
                       </label>
 
                       <label
-                        className={`flex items-center gap-3 p-3.5 rounded-xl border cursor-pointer transition-all duration-200 ${
+                        className={\`flex items-center gap-3 p-3.5 rounded-xl border cursor-pointer transition-all duration-200 \${
                           selectedCallTime === "18:00 UTC"
                             ? "bg-slate-brand/5 border-slate-brand text-slate-brand font-semibold shadow-xs"
                             : "bg-mist-brand/40 border-bluegrey-brand/20 text-dark-brand hover:border-bluegrey-brand/40"
-                        }`}
+                        }\`}
                       >
                         <input
                           type="radio"
@@ -222,6 +199,7 @@ END:VCALENDAR`;
                     </div>
                   </form>
                 </div>
+                */}
 
               </div>
             </div>
@@ -260,13 +238,16 @@ END:VCALENDAR`;
                         Bring 10 people to register using your referral code
                       </h4>
                       <p className="text-xs sm:text-sm text-bluegrey-brand mt-1">
-                        Encourage your local community, colleagues, and university peers to join the live stream.
+                        Encourage your local community, colleagues, and university peers to join the live stream. Share the link along with your Referral ID: <strong className="text-dark-brand">{referralCode}</strong>
                       </p>
+                      <a href="#section-kit" className="inline-block mt-2 text-xs font-semibold text-slate-brand hover:text-dark-brand underline">
+                        Access Ambassador Kit &rarr;
+                      </a>
 
                       {/* Referral widget */}
                       <div className="mt-4 p-3 rounded-xl bg-mist-brand/50 border border-bluegrey-brand/20 flex items-center justify-between gap-3">
                         <span className="text-xs font-mono text-slate-brand truncate">
-                          compassionai.io/join?ref={referralCode}
+                          https://makemypass.com/event/ai-compassion-participants
                         </span>
                         <button
                           onClick={handleCopyReferral}
@@ -285,11 +266,14 @@ END:VCALENDAR`;
                   <span className="text-sm font-mono text-taupe-brand font-bold mt-0.5">05</span>
                   <div>
                     <h4 className="text-base font-semibold text-dark-brand">
-                      Share one post about the relay
+                      Share one post about the relay and tag us
                     </h4>
                     <p className="text-xs sm:text-sm text-bluegrey-brand mt-1">
                       Highlight the relay schedule, your regional segment, or what compassion in AI means in your local context.
                     </p>
+                    <a href="#section-kit" className="inline-block mt-2 text-xs font-semibold text-slate-brand hover:text-dark-brand underline">
+                      Access Ambassador Kit &rarr;
+                    </a>
                   </div>
                 </div>
 
@@ -303,6 +287,9 @@ END:VCALENDAR`;
                     <p className="text-xs sm:text-sm text-bluegrey-brand mt-1 leading-relaxed">
                       Held after your region's relay segment, Demo Day is a chance to network with fellow ambassadors and gain visibility.
                     </p>
+                    <a href="#section-kit" className="inline-block mt-2 text-xs font-semibold text-slate-brand hover:text-dark-brand underline">
+                      Access Ambassador Kit &rarr;
+                    </a>
                   </div>
                 </div>
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, MessageSquare, ShieldCheck, Users } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 export const Community: React.FC = () => {
   return (
@@ -44,27 +44,6 @@ export const Community: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* Cohort Meta Indicators */}
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="flex flex-wrap items-center justify-center gap-6 mt-8 mb-10 text-xs text-powder-brand/70"
-        >
-          <div className="flex items-center gap-2">
-            <Users className="w-4 h-4 text-taupe-brand" />
-            <span>12 Regional Channels</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <ShieldCheck className="w-4 h-4 text-taupe-brand" />
-            <span>Private Cohort Verification</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <MessageSquare className="w-4 h-4 text-taupe-brand" />
-            <span>Direct Access to Program Curators</span>
-          </div>
-        </motion.div>
 
         {/* CTA: [ JOIN THE WHATSAPP GROUP → ] */}
         <motion.div

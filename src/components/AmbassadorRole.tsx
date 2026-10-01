@@ -45,7 +45,7 @@ export const AmbassadorRole: React.FC = () => {
               transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
               className="mt-6 sm:mt-8 text-sm sm:text-base md:text-lg text-bluegrey-brand font-normal leading-relaxed max-w-xl"
             >
-              As an Ambassador, your role doesn't stop at signing up. You'll bring new people from your region into the relay, follow the stream as it moves around the world, and take your own moment to share your story and work at a dedicated showcase after the relay, ethical, and compassionate — and you're one of the people helping build it.
+              As an Ambassador, your role doesn't stop at signing up. You'll bring new people from your region into the relay, follow the stream as it moves around the world, and take your own moment to share your story and work at a dedicated showcase after the relay, ethical, and compassionate, and you're one of the people helping build it.
             </motion.p>
 
             {/* 3 Bullet Points / Cards */}
@@ -63,7 +63,7 @@ export const AmbassadorRole: React.FC = () => {
                 },
                 {
                   title: "Watch the Relay, Then Take Your Own Stage",
-                  desc: "Follow the 24-hour stream as it passes from region to region. Then, at a dedicated showcase after the relay, share your story, your work, or your perspective — your own moment, separate from the live broadcast."
+                  desc: "Follow the 24-hour stream as it passes from region to region. Then, at a dedicated showcase after the relay, share your story, your work, or your perspective, your own moment, separate from the live broadcast."
                 },
                 {
                   title: "Build Something That Outlasts the Relay",
@@ -106,7 +106,7 @@ export const AmbassadorRole: React.FC = () => {
               className="relative aspect-[4/3] lg:aspect-[5/4] w-full rounded-[20px] sm:rounded-[24px] overflow-hidden shadow-lg border border-bluegrey-brand/20 bg-dark-brand"
             >
               <img
-                src="/images/ambassador-role.jpg"
+                src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=800&q=80"
                 alt="Ambassador carrying the compassion relay into their community"
                 className="w-full h-full object-cover transition-transform duration-1000 ease-out hover:scale-[1.03]"
                 loading="lazy"

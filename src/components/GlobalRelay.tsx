@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { RELAY_DATA } from '../data/relayRegions';
-import { MapPin, Clock, User, ArrowRight, Activity } from 'lucide-react';
+import { MapPin, Clock, User, ArrowRight } from 'lucide-react';
 
 export const GlobalRelay: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -38,16 +38,7 @@ export const GlobalRelay: React.FC = () => {
             </motion.p>
           </div>
 
-          <motion.div 
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.9, delay: 0.3 }}
-            className="flex items-center gap-3 px-5 py-2.5 rounded-full border border-orange-500/20 bg-orange-50 text-orange-600 text-sm font-medium shrink-0"
-          >
-            <Activity className="w-4 h-4" />
-            Unbroken Stream - 00:00 to 24:00 UTC
-          </motion.div>
+
         </div>
 
         {/* Scrollable Timeline Cards */}
