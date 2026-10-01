@@ -19,8 +19,7 @@ export const UploadPhotoModal: React.FC<UploadPhotoModalProps> = ({
   const [formData, setFormData] = useState({
     name: '',
     regionNumber: '01',
-    country: '',
-    city: '',
+    location: '',
     role: '',
     bio: '',
     imageUrl: '/images/ambassador-2.jpg',
@@ -31,6 +30,27 @@ export const UploadPhotoModal: React.FC<UploadPhotoModalProps> = ({
   const [isUploading, setIsUploading] = useState(false);
   const [uploadError, setUploadError] = useState<string | null>(null);
   const [isSuccess, setIsSuccess] = useState(false);
+
+  const resetForm = () => {
+    setFormData({
+      name: '',
+      regionNumber: '01',
+      location: '',
+      role: '',
+      bio: '',
+      imageUrl: '/images/ambassador-2.jpg',
+    });
+    setPreviewImage('/images/ambassador-2.jpg');
+    setSelectedFile(null);
+    setUploadError(null);
+    setIsUploading(false);
+    setIsSuccess(false);
+  };
+
+  const handleClose = () => {
+    resetForm();
+    onClose();
+  };
 
   if (!isOpen) return null;
 
@@ -69,16 +89,20 @@ export const UploadPhotoModal: React.FC<UploadPhotoModalProps> = ({
       }
     }
 
+    const locationParts = formData.location.split(',');
+    const city = locationParts[0]?.trim() || formData.location.trim();
+    const country = locationParts.slice(1).join(',').trim() || 'Global';
+
     const regionObj = RELAY_REGIONS.find(r => r.regionNumber === formData.regionNumber);
     const newAmbassador: Ambassador = {
       id: `amb-${Date.now()}`,
-      name: formData.name,
+      name: formData.name.trim(),
       regionNumber: formData.regionNumber,
       regionName: regionObj ? regionObj.name : `Region ${formData.regionNumber}`,
-      country: formData.country,
-      city: formData.city,
-      role: formData.role,
-      bio: formData.bio,
+      country,
+      city,
+      role: formData.role.trim(),
+      bio: formData.bio.trim(),
       imageUrl: finalImageUrl,
     };
     onAddAmbassador(newAmbassador);
@@ -93,7 +117,7 @@ export const UploadPhotoModal: React.FC<UploadPhotoModalProps> = ({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          onClick={onClose}
+          onClick={handleClose}
           className="fixed inset-0 bg-dark-brand/75 backdrop-blur-sm"
         />
 
@@ -105,7 +129,7 @@ export const UploadPhotoModal: React.FC<UploadPhotoModalProps> = ({
           className="relative w-full max-w-lg bg-white-brand rounded-2xl sm:rounded-3xl shadow-2xl border border-bluegrey-brand/20 p-6 sm:p-8 z-10 overflow-hidden"
         >
           <button
-            onClick={onClose}
+            onClick={handleClose}
             className="absolute top-5 right-5 p-2 rounded-full text-bluegrey-brand hover:text-dark-brand hover:bg-mist-brand/60 transition-colors"
             aria-label="Close dialog"
           >
@@ -196,15 +220,8 @@ export const UploadPhotoModal: React.FC<UploadPhotoModalProps> = ({
                       type="text"
                       required
                       placeholder="Kyoto, Japan"
-                      value={formData.city ? `${formData.city}, ${formData.country}` : ''}
-                      onChange={(e) => {
-                        const parts = e.target.value.split(',');
-                        setFormData({
-                          ...formData,
-                          city: parts[0]?.trim() || '',
-                          country: parts[1]?.trim() || 'Global',
-                        });
-                      }}
+                      value={formData.location}
+                      onChange={(e) => setFormData({ ...formData, location: e.target.value })}
                       className="w-full px-3.5 py-2.5 rounded-xl border border-bluegrey-brand/30 bg-mist-brand/20 text-dark-brand text-xs focus:ring-2 focus:ring-slate-brand/40"
                     />
                   </div>
@@ -268,14 +285,6 @@ export const UploadPhotoModal: React.FC<UploadPhotoModalProps> = ({
                     )}
                   </button>
 
-                  <div className="mt-2.5 flex items-center justify-center gap-1.5 text-[11px] text-bluegrey-brand font-mono">
-                    <span className={`w-1.5 h-1.5 rounded-full ${isSupabaseConfigured ? 'bg-emerald-500' : 'bg-amber-400'}`} />
-                    <span>
-                      {isSupabaseConfigured 
-                        ? 'Supabase Cloud Storage enabled' 
-                        : 'Local mode (add VITE_SUPABASE_ANON_KEY to .env for cloud storage)'}
-                    </span>
-                  </div>
                 </div>
               </form>
             </div>
@@ -289,10 +298,7 @@ export const UploadPhotoModal: React.FC<UploadPhotoModalProps> = ({
                 Your portrait is now active on the Wall of Ambassadors. Thank you for carrying the relay forward.
               </p>
               <button
-                onClick={() => {
-                  setIsSuccess(false);
-                  onClose();
-                }}
+                onClick={handleClose}
                 className="mt-6 px-6 py-2.5 rounded-xl bg-slate-brand text-white-brand text-xs font-semibold tracking-wider uppercase hover:bg-dark-brand transition-colors"
               >
                 CLOSE DIRECTORY VIEW
