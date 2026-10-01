@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Play } from 'lucide-react';
 
 interface FounderMessageProps {
   onOpenVideoModal?: () => void;
 }
 
 export const FounderMessage: React.FC<FounderMessageProps> = () => {
+  const [isPlaying, setIsPlaying] = useState(false);
+
   return (
     <section 
       id="section-founder" 
@@ -41,17 +44,45 @@ export const FounderMessage: React.FC<FounderMessageProps> = () => {
           whileInView={{ opacity: 1, scale: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
-          className="relative aspect-video w-full rounded-[22px] sm:rounded-[28px] overflow-hidden shadow-xl border border-bluegrey-brand/20 bg-dark-brand"
+          className="relative aspect-video w-full rounded-[22px] sm:rounded-[28px] overflow-hidden shadow-xl border border-bluegrey-brand/20 bg-dark-brand group cursor-pointer"
+          onClick={() => setIsPlaying(true)}
         >
-          <iframe
-            className="w-full h-full"
-            src="https://www.youtube.com/embed/t6MaA4dvs6U"
-            title="YouTube video player"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerPolicy="strict-origin-when-cross-origin"
-            allowFullScreen
-          ></iframe>
+          {!isPlaying ? (
+            <>
+              {/* High-res YouTube Thumbnail */}
+              <img
+                src="https://img.youtube.com/vi/t6MaA4dvs6U/maxresdefault.jpg"
+                alt="Welcome Message"
+                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                loading="lazy"
+              />
+
+              {/* Dark gradient overlay */}
+              <div className="absolute inset-0 bg-dark-brand/10 transition-opacity duration-300 group-hover:bg-dark-brand/20" />
+
+              {/* Center Minimal Play Button */}
+              <div className="absolute inset-0 flex items-center justify-center z-10">
+                <motion.button
+                  whileHover={{ scale: 1.08 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white-brand/90 hover:bg-white-brand text-slate-brand flex items-center justify-center shadow-lg backdrop-blur-md transition-all duration-300 border border-white-brand focus:outline-none"
+                  aria-label="Play welcome message video"
+                >
+                  <Play className="w-6 h-6 sm:w-7 sm:h-7 fill-current ml-1 text-slate-brand" />
+                </motion.button>
+              </div>
+            </>
+          ) : (
+            <iframe
+              className="w-full h-full"
+              src="https://www.youtube.com/embed/t6MaA4dvs6U?autoplay=1"
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            ></iframe>
+          )}
         </motion.div>
       </div>
     </section>
