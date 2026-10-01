@@ -106,7 +106,7 @@ export const Hero: React.FC<HeroProps> = ({ onJoinClick, onLearnMoreClick }) => 
               <span className="text-3xl sm:text-4xl font-light text-dark-brand tracking-tight">
                 24
               </span>
-              <span className="text-[10px] sm:text-xs font-semibold tracking-[0.2em] uppercase text-bluegrey-brand mt-1">
+              <span className="text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase text-dark-brand/90 mt-1">
                 HOURS
               </span>
             </div>
@@ -118,7 +118,7 @@ export const Hero: React.FC<HeroProps> = ({ onJoinClick, onLearnMoreClick }) => 
               <span className="text-3xl sm:text-4xl font-light text-dark-brand tracking-tight">
                 12
               </span>
-              <span className="text-[10px] sm:text-xs font-semibold tracking-[0.2em] uppercase text-bluegrey-brand mt-1">
+              <span className="text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase text-dark-brand/90 mt-1">
                 REGIONS
               </span>
             </div>
@@ -130,7 +130,7 @@ export const Hero: React.FC<HeroProps> = ({ onJoinClick, onLearnMoreClick }) => 
               <span className="text-3xl sm:text-4xl font-light text-dark-brand tracking-tight">
                 1
               </span>
-              <span className="text-[10px] sm:text-xs font-semibold tracking-[0.2em] uppercase text-bluegrey-brand mt-1">
+              <span className="text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase text-dark-brand/90 mt-1">
                 GLOBAL RELAY
               </span>
             </div>
