@@ -2,11 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Check, Copy } from 'lucide-react';
 
-interface AmbassadorKitProps {
-  onOpenKitModal?: () => void;
-}
-
-export const AmbassadorKit: React.FC<AmbassadorKitProps> = ({ onOpenKitModal }) => {
+export const AmbassadorKit: React.FC = () => {
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
 
   const kitItems = [
@@ -46,19 +42,6 @@ export const AmbassadorKit: React.FC<AmbassadorKitProps> = ({ onOpenKitModal }) 
       <div className="max-w-5xl mx-auto">
         {/* Section Header */}
         <div className="max-w-2xl mb-12 sm:mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="inline-flex items-center gap-2 mb-3"
-          >
-            <span className="w-1.5 h-1.5 rounded-full bg-taupe-brand" />
-            <span className="text-[11px] sm:text-xs font-semibold tracking-[0.2em] uppercase text-bluegrey-brand">
-              What You Receive
-            </span>
-          </motion.div>
-
           <motion.h2
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -66,7 +49,7 @@ export const AmbassadorKit: React.FC<AmbassadorKitProps> = ({ onOpenKitModal }) 
             transition={{ duration: 0.9, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="text-3xl sm:text-4xl md:text-5xl font-light tracking-tight text-dark-brand leading-[1.08]"
           >
-            Everything you need to represent your region.
+            Your Ambassador Kit
           </motion.h2>
 
           <motion.p
@@ -131,8 +114,10 @@ export const AmbassadorKit: React.FC<AmbassadorKitProps> = ({ onOpenKitModal }) 
           transition={{ duration: 0.8, delay: 0.3 }}
           className="mt-10 sm:mt-12 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
         >
-          <button
-            onClick={onOpenKitModal}
+          <a
+            href="https://drive.google.com/drive/folders/1qN82NAxYtPH0VkSPf9eSMdWQzikBxu4-?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
             className="group inline-flex items-center gap-3 text-xs sm:text-sm font-semibold tracking-wider uppercase text-dark-brand hover:text-slate-brand transition-all duration-300"
           >
             <span className="border-b border-dark-brand group-hover:border-slate-brand pb-0.5">
@@ -141,7 +126,7 @@ export const AmbassadorKit: React.FC<AmbassadorKitProps> = ({ onOpenKitModal }) 
             <div className="w-7 h-7 rounded-full bg-slate-brand text-white-brand flex items-center justify-center transition-transform duration-300 group-hover:translate-x-1 group-hover:bg-dark-brand">
               <ArrowRight className="w-3.5 h-3.5" />
             </div>
-          </button>
+          </a>
 
           <span className="text-xs text-bluegrey-brand font-mono">
             Google Drive Repository · Cohort 2026

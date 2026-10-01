@@ -22,7 +22,7 @@ export const AmbassadorRole: React.FC = () => {
             >
               <span className="w-1.5 h-1.5 rounded-full bg-taupe-brand" />
               <span className="text-[11px] sm:text-xs font-semibold tracking-[0.2em] uppercase text-bluegrey-brand">
-                About the Program
+                Your Role as Ambassador
               </span>
             </motion.div>
 
@@ -37,36 +37,50 @@ export const AmbassadorRole: React.FC = () => {
               Carry the relay forward.
             </motion.h2>
 
-            {/* Body Paragraphs */}
-            <div className="mt-6 sm:mt-8 space-y-5 text-sm sm:text-base md:text-lg text-bluegrey-brand font-normal leading-relaxed max-w-xl">
-              <motion.p
-                initial={{ opacity: 0, y: 14 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-              >
-                As an Ambassador, you're not just attending the relay, you're carrying it into your region.
-              </motion.p>
+            {/* Introductory Body Paragraph */}
+            <motion.p
+              initial={{ opacity: 0, y: 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+              className="mt-6 sm:mt-8 text-sm sm:text-base md:text-lg text-bluegrey-brand font-normal leading-relaxed max-w-xl"
+            >
+              As an Ambassador, your role doesn't stop at signing up. You'll bring new people from your region into the relay, follow the stream as it moves around the world, and take your own moment to share your story and work at a dedicated showcase after the relay, ethical, and compassionate — and you're one of the people helping build it.
+            </motion.p>
 
-              <motion.p
-                initial={{ opacity: 0, y: 14 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.9, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              >
-                You'll build awareness, bring new voices into the conversation, and represent your part of the world in a movement spanning 12 regions and 24 continuous hours.
-              </motion.p>
-
-              <motion.p
-                initial={{ opacity: 0, y: 14 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.9, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                className="text-dark-brand/90 font-medium"
-              >
-                This is an international leadership journey for changemakers who believe AI's future has to be human-centred, ethical, and compassionate, and you're one of the people helping build it.
-              </motion.p>
-            </div>
+            {/* 3 Bullet Points / Cards */}
+            <motion.ul 
+              className="mt-10 space-y-6 max-w-xl"
+              initial={{ opacity: 0, y: 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.9, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            >
+              {[
+                {
+                  title: "Bring Your Region to the Relay",
+                  desc: "Recruit students, researchers, and changemakers from your region to register and join the conversation. Your referral code tracks who you bring in."
+                },
+                {
+                  title: "Watch the Relay, Then Take Your Own Stage",
+                  desc: "Follow the 24-hour stream as it passes from region to region. Then, at a dedicated showcase after the relay, share your story, your work, or your perspective — your own moment, separate from the live broadcast."
+                },
+                {
+                  title: "Build Something That Outlasts the Relay",
+                  desc: "Over the following 3-6 months, take one concrete idea, project, or piece of research from concept to execution, with support from your cohort and mentors."
+                }
+              ].map((item, i) => (
+                <li key={i} className="flex gap-4 group">
+                  <span className="flex-shrink-0 flex items-center justify-center w-6 h-6 rounded-full border border-taupe-brand text-taupe-brand text-[10px] sm:text-xs font-mono font-semibold transition-colors duration-300 group-hover:bg-taupe-brand group-hover:text-white-brand">
+                    {i + 1}
+                  </span>
+                  <div>
+                    <h4 className="text-dark-brand font-medium text-sm sm:text-base leading-snug">{item.title}</h4>
+                    <p className="mt-1.5 text-xs sm:text-sm text-bluegrey-brand leading-relaxed">{item.desc}</p>
+                  </div>
+                </li>
+              ))}
+            </motion.ul>
 
             {/* Subtle editorial citation */}
             <motion.div

@@ -3,6 +3,7 @@ import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 // import { HeroTransition } from './components/HeroTransition';
 import { FounderMessage } from './components/FounderMessage';
+import { GlobalRelay } from './components/GlobalRelay';
 import { AmbassadorRole } from './components/AmbassadorRole';
 import { AmbassadorKit } from './components/AmbassadorKit';
 import { Community } from './components/Community';
@@ -84,14 +85,17 @@ export function App() {
           {/* 02 — LISTEN : Founder Message */}
           <FounderMessage onOpenVideoModal={() => setIsVideoModalOpen(true)} />
 
+          {/* 02.5 — Global Relay */}
+          <GlobalRelay />
+
           {/* 03 — CARRY : Your Role */}
           <AmbassadorRole />
 
           {/* 04 — EQUIP : Ambassador Kit List */}
-          <AmbassadorKit onOpenKitModal={() => setIsKitModalOpen(true)} />
+          <AmbassadorKit />
 
           {/* 06 — CONNECT : Global Ambassador Community */}
-          <Community onJoinWhatsApp={() => setIsJoinModalOpen(true)} />
+          <Community />
 
           {/* 07 — ACT : Vertical Onboarding & Ambassadorship Tasks Timeline */}
           <AmbassadorTasks />

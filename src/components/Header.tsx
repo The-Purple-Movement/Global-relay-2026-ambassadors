@@ -104,14 +104,18 @@ export const Header: React.FC<HeaderProps> = ({ onJoinClick, currentView, onNavi
           {currentView === 'ambassadors' ? (
             <button
               onClick={() => onNavigate('home')}
-              className="text-xs font-semibold tracking-wider text-slate-brand hover:text-dark-brand px-3 py-1.5"
+              className={`text-xs font-semibold tracking-wider px-3 py-1.5 transition-colors ${
+                isScrolled ? 'text-slate-brand hover:text-dark-brand' : 'text-white-brand/90 hover:text-white-brand'
+              }`}
             >
               ← RETURN HOME
             </button>
           ) : (
             <button
               onClick={() => onNavigate('ambassadors')}
-              className="hidden lg:inline-flex items-center text-xs font-medium text-dark-brand/80 hover:text-dark-brand px-3 py-1.5"
+              className={`hidden lg:inline-flex items-center text-xs font-medium px-3 py-1.5 transition-colors ${
+                isScrolled ? 'text-dark-brand/80 hover:text-dark-brand' : 'text-white-brand/90 hover:text-white-brand'
+              }`}
             >
               Cohort Directory
             </button>

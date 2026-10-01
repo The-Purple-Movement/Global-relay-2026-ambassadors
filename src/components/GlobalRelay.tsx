@@ -1,138 +1,173 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { RELAY_REGIONS } from '../data/relayRegions';
-import { Clock, Compass, Globe } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { RELAY_DATA } from '../data/relayRegions';
+import { MapPin, Clock, User, ArrowRight, Activity } from 'lucide-react';
 
 export const GlobalRelay: React.FC = () => {
-  const [selectedRegionId, setSelectedRegionId] = useState(1);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const activeSegment = RELAY_DATA[activeIndex];
 
   return (
     <section 
       id="section-relay"
-      className="relative bg-[#DFE5EA] text-dark-brand py-24 sm:py-32 px-6 sm:px-8 lg:px-12 overflow-hidden border-t border-bluegrey-brand/15"
+      className="bg-white-brand text-dark-brand py-24 sm:py-32 px-6 sm:px-8 lg:px-12 overflow-hidden border-t border-mist-brand/50"
     >
-      {/* Soft background ambient gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#DFE5EA] via-[#E8ECEF] to-[#DFE5EA] pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="max-w-6xl mx-auto">
         
-        {/* Section Header */}
-        <div className="max-w-3xl mb-12 sm:mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="inline-flex items-center gap-2 mb-3"
-          >
-            <span className="w-2 h-2 rounded-full bg-slate-brand" />
-            <span className="text-[11px] sm:text-xs font-semibold tracking-[0.2em] uppercase text-bluegrey-brand">
-              What You're Part Of
-            </span>
-          </motion.div>
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
+          <div className="max-w-2xl">
+            <motion.h2
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.9, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+              className="text-3xl sm:text-4xl md:text-5xl font-light tracking-tight text-dark-brand"
+            >
+              The 24-Hour Global Relay
+            </motion.h2>
 
-          <motion.h2
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.9, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="text-4xl sm:text-5xl md:text-6xl font-light tracking-tight text-dark-brand leading-[1.08]"
-          >
-            One relay.<br />
-            One planet.<br />
-            Twenty-four hours.
-          </motion.h2>
-
-          <div className="mt-6 space-y-3 text-base sm:text-lg text-bluegrey-brand font-normal leading-relaxed max-w-2xl">
             <motion.p
-              initial={{ opacity: 0, y: 14 }}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+              className="mt-6 text-sm sm:text-base md:text-lg font-normal text-bluegrey-brand leading-relaxed max-w-xl"
             >
               One relay. Twelve regions. Twenty-four hours, without a break in the stream. Starting in Kyoto and circling the entire planet before returning home.
             </motion.p>
-            <motion.p
-              initial={{ opacity: 0, y: 14 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.9, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="text-dark-brand font-medium"
-            >
-              This year's theme, Futokoro (懐), the embrace that holds us, asks how we responsibly receive AI into our homes, our work, and our daily lives.
-            </motion.p>
+          </div>
+
+          <motion.div 
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.9, delay: 0.3 }}
+            className="flex items-center gap-3 px-5 py-2.5 rounded-full border border-orange-500/20 bg-orange-50 text-orange-600 text-sm font-medium shrink-0"
+          >
+            <Activity className="w-4 h-4" />
+            Unbroken Stream - 00:00 to 24:00 UTC
+          </motion.div>
+        </div>
+
+        {/* Scrollable Timeline Cards */}
+        <div className="relative mb-12">
+          {/* Progress Bar Background */}
+          <div className="absolute bottom-[20px] left-0 right-0 h-3 bg-mist-brand rounded-full overflow-hidden">
+             <div 
+               className="h-full bg-gradient-to-r from-purple-500/20 to-purple-500/60 rounded-full transition-all duration-500 ease-out" 
+               style={{ width: `${((activeIndex + 1) / RELAY_DATA.length) * 100}%` }}
+             />
+          </div>
+
+          <div className="flex gap-3 sm:gap-4 overflow-x-auto pb-10 pt-2 hide-scrollbar snap-x snap-mandatory">
+            {RELAY_DATA.map((item, idx) => {
+              const isActive = activeIndex === idx;
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => setActiveIndex(idx)}
+                  className={`
+                    relative shrink-0 w-56 p-5 rounded-2xl text-left transition-all duration-300 snap-start
+                    border 
+                    ${isActive 
+                      ? 'border-purple-brand bg-purple-brand/5 shadow-md shadow-purple-brand/5 scale-[1.02]' 
+                      : 'border-bluegrey-brand/10 bg-white hover:border-purple-brand/30 hover:bg-mist-brand'}
+                  `}
+                >
+                  <div className={`text-[10px] font-bold tracking-widest uppercase mb-2 ${isActive ? 'text-purple-brand' : 'text-bluegrey-brand'}`}>
+                    ZONE {idx + 1 < 10 ? `0${idx + 1}` : idx + 1}
+                  </div>
+                  <h3 className={`font-semibold text-lg mb-1 truncate transition-colors ${isActive ? 'text-dark-brand' : 'text-slate-brand'}`}>
+                    {item.segment}
+                  </h3>
+                  <p className="text-xs text-bluegrey-brand flex items-center gap-1.5 mt-2">
+                    <Clock className="w-3 h-3" />
+                    {item.utc}
+                  </p>
+                </button>
+              );
+            })}
           </div>
         </div>
 
-        {/* 12 Regions Editorial Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {RELAY_REGIONS.map((region, idx) => {
-            const isSelected = selectedRegionId === region.id;
-            return (
-              <motion.div
-                key={region.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-30px" }}
-                transition={{ duration: 0.6, delay: idx * 0.04 }}
-                onClick={() => setSelectedRegionId(region.id)}
-                className={`group p-6 rounded-2xl border transition-all duration-300 cursor-pointer flex flex-col justify-between ${
-                  isSelected
-                    ? 'bg-white-brand/90 border-slate-brand shadow-md scale-[1.01]'
-                    : 'bg-white-brand/45 hover:bg-white-brand/75 border-white-brand/70 shadow-xs'
-                }`}
-              >
+        {/* Expanded View */}
+        <div className="bg-mist-brand/50 rounded-[32px] p-6 sm:p-10 border border-bluegrey-brand/10 shadow-sm relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-brand to-orange-500" />
+          
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeIndex}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.4, ease: "easeInOut" }}
+              className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start"
+            >
+              {/* Left Column: Segment & Region */}
+              <div className="lg:col-span-7">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-brand/10 text-purple-brand text-xs font-bold tracking-widest uppercase mb-6">
+                  RELAY STAGE {activeIndex + 1} OF {RELAY_DATA.length}
+                </div>
+                
+                <h3 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-dark-brand tracking-tight mb-6">
+                  {activeSegment.segment}
+                </h3>
+
+                <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 text-sm font-medium text-slate-brand mb-8">
+                  <div className="flex items-center gap-2 px-3 py-2 bg-white rounded-lg border border-bluegrey-brand/10 shadow-sm">
+                    <MapPin className="w-4 h-4 text-orange-500" />
+                    Region: {activeSegment.region}
+                  </div>
+                  <div className="flex items-center gap-2 px-3 py-2 bg-white rounded-lg border border-bluegrey-brand/10 shadow-sm">
+                    <Clock className="w-4 h-4 text-purple-brand" />
+                    {activeSegment.utc}
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Column: Producer Info */}
+              <div className="lg:col-span-5 flex flex-col gap-6 lg:pl-8 lg:border-l border-bluegrey-brand/10">
                 <div>
-                  {/* Top line with region number & UTC time */}
-                  <div className="flex items-center justify-between text-xs mb-3">
-                    <span className="font-mono font-bold text-slate-brand px-2.5 py-1 rounded-md bg-slate-brand/10">
-                      REGION {region.regionNumber}
-                    </span>
-                    <div className="flex items-center gap-1.5 text-bluegrey-brand font-mono">
-                      <Clock className="w-3.5 h-3.5 text-slate-brand" />
-                      <span>{region.timeUtc}</span>
-                    </div>
+                  <div className="text-[10px] font-bold tracking-widest text-bluegrey-brand uppercase mb-2">
+                    Regional Producer
                   </div>
-
-                  {/* Region Title & Major Cities */}
-                  <h3 className="text-xl font-semibold text-dark-brand group-hover:text-slate-brand transition-colors">
-                    {region.name}
-                  </h3>
-                  <p className="text-xs text-bluegrey-brand mt-1 font-medium flex items-center gap-1.5">
-                    <Globe className="w-3.5 h-3.5 opacity-70" />
-                    <span>{region.cities}</span>
-                  </p>
-
-                  {/* Programmatic Theme Focus */}
-                  <div className="mt-4 pt-3 border-t border-dark-brand/5 text-xs text-dark-brand/80 leading-relaxed">
-                    <div className="flex items-start gap-1.5 text-slate-brand font-medium mb-1">
-                      <Compass className="w-3.5 h-3.5 shrink-0 mt-0.5" />
-                      <span>Focus:</span>
-                    </div>
-                    {region.themeFocus}
+                  <div className="text-2xl font-semibold text-dark-brand flex items-center gap-3">
+                    <User className="w-6 h-6 text-bluegrey-brand" />
+                    {activeSegment.producer || 'TBA'}
                   </div>
                 </div>
 
-                {/* Host Info */}
-                <div className="mt-4 pt-3 border-t border-dark-brand/5 flex items-center justify-between text-[11px] text-bluegrey-brand">
-                  <span>Host: {region.hosts}</span>
-                  {idx === 0 && (
-                    <span className="px-2 py-0.5 rounded text-[10px] font-semibold uppercase bg-taupe-brand/20 text-dark-brand">
-                      Kyoto Origin
-                    </span>
-                  )}
-                  {idx === 11 && (
-                    <span className="px-2 py-0.5 rounded text-[10px] font-semibold uppercase bg-slate-brand text-white-brand">
-                      Relay Finale
-                    </span>
-                  )}
+                <div className="pt-4 border-t border-bluegrey-brand/10">
+                  <div className="text-[10px] font-bold tracking-widest text-bluegrey-brand uppercase mb-3">
+                    Relay Status
+                  </div>
+                  <div className="flex items-center gap-2 text-sm font-medium text-emerald-600 bg-emerald-50 px-3 py-1.5 rounded-full inline-flex">
+                    <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                    Ambassador Roster Confirmed
+                  </div>
                 </div>
-              </motion.div>
-            );
-          })}
+
+                <button className="mt-4 w-full flex items-center justify-center gap-2 py-4 px-6 rounded-xl bg-gradient-to-r from-purple-brand to-orange-500 text-white font-semibold hover:shadow-lg hover:shadow-purple-brand/20 transition-all duration-300 group">
+                  Represent {activeSegment.segment}
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </button>
+              </div>
+            </motion.div>
+          </AnimatePresence>
         </div>
 
       </div>
+      
+      <style dangerouslySetInnerHTML={{__html: `
+        .hide-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .hide-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}} />
     </section>
   );
 };

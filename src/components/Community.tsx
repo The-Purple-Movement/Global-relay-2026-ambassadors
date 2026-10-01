@@ -2,19 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, MessageSquare, ShieldCheck, Users } from 'lucide-react';
 
-interface CommunityProps {
-  onJoinWhatsApp?: () => void;
-}
-
-export const Community: React.FC<CommunityProps> = ({ onJoinWhatsApp }) => {
-  const handleWhatsAppRedirect = () => {
-    if (onJoinWhatsApp) {
-      onJoinWhatsApp();
-    } else {
-      window.open('https://chat.whatsapp.com/sample-ambassador-invite', '_blank', 'noopener,noreferrer');
-    }
-  };
-
+export const Community: React.FC = () => {
   return (
     <section 
       id="section-community"
@@ -32,20 +20,6 @@ export const Community: React.FC<CommunityProps> = ({ onJoinWhatsApp }) => {
       </div>
 
       <div className="max-w-4xl mx-auto relative z-10 text-center flex flex-col items-center">
-        {/* Section Label */}
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="inline-flex items-center gap-2 mb-4"
-        >
-          <span className="w-1.5 h-1.5 rounded-full bg-taupe-brand animate-pulse" />
-          <span className="text-[11px] sm:text-xs font-semibold tracking-[0.24em] uppercase text-powder-brand">
-            Connect With Fellow Ambassadors
-          </span>
-        </motion.div>
-
         {/* Title */}
         <motion.h2
           initial={{ opacity: 0, y: 16 }}
@@ -54,7 +28,7 @@ export const Community: React.FC<CommunityProps> = ({ onJoinWhatsApp }) => {
           transition={{ duration: 0.9, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
           className="text-3xl sm:text-5xl md:text-6xl font-light tracking-tight text-white-brand leading-[1.08] text-balance"
         >
-          The relay continues beyond the screen.
+          Connect With Fellow Ambassadors
         </motion.h2>
 
         {/* Body */}
@@ -66,10 +40,7 @@ export const Community: React.FC<CommunityProps> = ({ onJoinWhatsApp }) => {
           className="mt-6 sm:mt-8 space-y-4 text-sm sm:text-base md:text-lg text-powder-brand/85 font-normal leading-relaxed max-w-2xl"
         >
           <p>
-            This cohort spans every region in the relay, and the conversation doesn't stop at onboarding.
-          </p>
-          <p className="text-white-brand/90">
-            Join the WhatsApp community to meet ambassadors from around the world, ask questions, and coordinate before October 2nd.
+            This cohort spans every region in the relay, and the conversation doesn't stop at onboarding. Join the WhatsApp community to meet ambassadors from around the world.
           </p>
         </motion.div>
 
@@ -102,13 +73,15 @@ export const Community: React.FC<CommunityProps> = ({ onJoinWhatsApp }) => {
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
         >
-          <button
-            onClick={handleWhatsAppRedirect}
+          <a
+            href="https://chat.whatsapp.com/JEjPQD4vKjnBdfaODrlgOS?s=cl&p=i&mlu=4&ilr=4"
+            target="_blank"
+            rel="noopener noreferrer"
             className="group inline-flex items-center gap-3 px-8 py-4 rounded-xl text-xs sm:text-sm font-semibold tracking-wider uppercase text-dark-brand bg-white-brand hover:bg-mist-brand shadow-lg transition-all duration-300 hover:translate-y-[-2px] focus:outline-none focus-visible:ring-2 focus-visible:ring-powder-brand"
           >
             <span>JOIN THE WHATSAPP GROUP</span>
             <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 text-slate-brand" />
-          </button>
+          </a>
         </motion.div>
       </div>
     </section>
