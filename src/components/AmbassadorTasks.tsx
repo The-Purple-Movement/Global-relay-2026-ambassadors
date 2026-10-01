@@ -222,7 +222,7 @@ export const AmbassadorTasks: React.FC = () => {
                 <div className="p-6 rounded-2xl bg-white-brand/70 border border-bluegrey-brand/20 shadow-sm">
                   <div className="flex items-start gap-4">
                     <span className="text-sm font-mono text-taupe-brand font-bold mt-0.5">04</span>
-                    <div className="flex-1">
+                    <div className="flex-1 min-w-0">
                       <h4 className="text-base font-semibold text-dark-brand">
                         Bring 10 people to register using your referral code
                       </h4>
