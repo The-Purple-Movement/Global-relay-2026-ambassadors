@@ -1,6 +1,5 @@
 import React from 'react';
-import { FaDiscord, FaEnvelope, FaGraduationCap, FaHandshake, FaBullhorn } from 'react-icons/fa';
-import { FaXTwitter } from 'react-icons/fa6';
+import { FaEnvelope, FaGraduationCap, FaHandshake, FaBullhorn } from 'react-icons/fa';
 
 interface FooterProps {
   onNavigate: (view: 'home' | 'ambassadors') => void;
