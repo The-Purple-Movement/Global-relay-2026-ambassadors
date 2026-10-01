@@ -2,12 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 
 interface HeaderProps {
-  onJoinClick: () => void;
-  currentView: 'home' | 'ambassadors';
   onNavigate: (view: 'home' | 'ambassadors') => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ onJoinClick, onNavigate }) => {
+export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   // const [activeNav, setActiveNav] = useState<'About' | 'Forum' | 'Ambassador' | 'Get Involved'>('Ambassador');
 
@@ -123,13 +121,15 @@ export const Header: React.FC<HeaderProps> = ({ onJoinClick, onNavigate }) => {
           )}
           */}
 
-          <button
-            onClick={onJoinClick}
+          <a
+            href="https://compassionai.io/"
+            target="_blank"
+            rel="noopener noreferrer"
             className="group inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full text-xs font-semibold tracking-wide text-white-brand bg-slate-brand hover:bg-dark-brand border border-white-brand/20 shadow-md transition-all duration-300 hover:scale-[1.02] focus:outline-none"
           >
             <span>Join The Relay</span>
             <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-powder-brand" />
-          </button>
+          </a>
         </div>
 
       </div>
