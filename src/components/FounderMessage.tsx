@@ -25,18 +25,7 @@ export const FounderMessage: React.FC<FounderMessageProps> = ({ onOpenVideoModal
       <div className="max-w-5xl mx-auto">
         {/* Section Header */}
         <div className="max-w-2xl mb-12 sm:mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="inline-flex items-center gap-2 mb-3"
-          >
-            <span className="w-1.5 h-1.5 rounded-full bg-taupe-brand" />
-            <span className="text-[11px] sm:text-xs font-semibold tracking-[0.2em] uppercase text-bluegrey-brand">
-              Hear from Jun
-            </span>
-          </motion.div>
+
 
           <motion.h2
             initial={{ opacity: 0, y: 16 }}
