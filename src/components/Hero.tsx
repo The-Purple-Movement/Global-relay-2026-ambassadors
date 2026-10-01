@@ -18,7 +18,7 @@ export const Hero: React.FC<HeroProps> = ({ onJoinClick, onLearnMoreClick }) => 
   };
 
   return (
-    <section className="relative min-h-screen bg-[#D0D8D0] text-dark-brand flex items-center pt-24 sm:pt-28 pb-16 px-6 sm:px-8 lg:px-12 overflow-hidden select-none">
+    <section className="relative min-h-screen bg-[#D0D8D0] text-dark-brand flex items-center pt-24 sm:pt-28 pb-16 overflow-hidden select-none">
       
       {/* Background Image: Exact User Reference Image */}
       <div className="absolute inset-0 z-0">
@@ -31,7 +31,7 @@ export const Hero: React.FC<HeroProps> = ({ onJoinClick, onLearnMoreClick }) => 
         <div className="absolute inset-0 bg-gradient-to-r from-[#D0D8D0]/95 via-[#D0D8D0]/70 to-transparent md:w-[68%] pointer-events-none" />
       </div>
 
-      <div className="max-w-7xl mx-auto w-full relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      <div className="max-w-7xl mx-auto w-full px-6 sm:px-8 lg:px-12 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
         
         {/* Left Content Column */}
         <div className="lg:col-span-7 xl:col-span-6 flex flex-col justify-center">
